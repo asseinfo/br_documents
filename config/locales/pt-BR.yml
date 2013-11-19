@@ -1,0 +1,8 @@
+pt-BR:
+  validator:
+    ie:
+      uf:
+        read_error: "Não foi possível ler o atributo '%{uf}'"
+        no_configured: "Não foi configurado o atributo 'uf' em IeValidator"
+        invalid: "UF é inválida"
+        no_present: "Quando informado a Inscrição Estadual a UF não deve ficar em branco"

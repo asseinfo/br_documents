@@ -1,5 +1,5 @@
-require "br_doc_validators/version"
+require "active_model"
+Dir[File.dirname(__FILE__) + "/**/*.rb"].each { |f| require f }
 
-module BrDocValidators
-  # Your code goes here...
-end
+I18n.load_path += Dir.glob(File.expand_path('../../config/locales/**/*',__FILE__))
+I18n.default_locale = "pt-BR"

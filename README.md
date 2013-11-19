@@ -6,7 +6,7 @@ It validates Brazilian documents for application use. Today it can validate CNPJ
 
 Add this line to your application's Gemfile:
 
-    gem "br_doc_validators"
+  gem "br_doc_validators"
 
 And then execute:
 
@@ -14,14 +14,17 @@ And then execute:
 
 Or install it yourself as:
 
+    ```ruby
     $ gem install br_doc_validators
+    ```
 
 ## Usage
 
+    ```ruby
     class City < ActiveRecord::Base
       attr_accessor :name, :uf
 
-      has_many :person
+      has_many :people
     end
 
     class Person < ActiveRecord::Base
@@ -41,6 +44,7 @@ Or install it yourself as:
       validates :ie,
         ie: {uf: "city#uf"}
     end
+
 
 
     pj = Person.new
@@ -84,6 +88,7 @@ Or install it yourself as:
     c.uf = "SC"
     pf.ie = "111.111.111"
     pf.valid? # => false
+    ```
 
 ## Contributing
 
