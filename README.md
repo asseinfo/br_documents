@@ -6,89 +6,110 @@ It validates Brazilian documents for application use. Today it can validate CNPJ
 
 Add this line to your application's Gemfile:
 
-  gem "br_doc_validators"
+```ruby
+gem "br_doc_validators"
+```
 
 And then execute:
 
-    $ bundle
+```ruby
+$ bundle
+```
 
 Or install it yourself as:
 
-    ```ruby
-    $ gem install br_doc_validators
-    ```
+```ruby
+$ gem install br_doc_validators
+```
 
 ## Usage
 
-    ```ruby
-    class City < ActiveRecord::Base
-      attr_accessor :name, :uf
+### How it can validate a CNPJ
 
-      has_many :people
-    end
+```ruby
+class Person < ActiveRecord::Base
 
-    class Person < ActiveRecord::Base
+  attr_accessor :cnpj
 
-      attr_accessor :name, :cnpj, :cpf, :ie
-
-      belongs_to :city
-
-      validates :cnpj,
-        cnpj: true,
-        length: { is: 14, allow_blank: true }
-
-      validates :cpf,
-        cpf: true,
-        length: { is: 11, allow_blank: true }
-
-      validates :ie,
-        ie: {uf: "city#uf"}
-    end
+  validates :cnpj,
+    cnpj: true
+end
 
 
+pj = Person.new
+pj.cnpj = "85961757000102"
+pj.valid? # => true
 
-    pj = Person.new
-    pj.cnpj = "85961757000102"
-    pj.valid? # => true
+pj.cnpj = "85.961.757/0001-02" # with mask
+pf.valid? # => true
 
-    pj.cnpj = "85.961.757/0001-02"
-    pf.valid? # => true
+pj.cnpj = "11111111111111"
+pj.valid? # => false
+```
 
-    pj.cnpj = "11111111111111"
-    pj.valid? # => false
+### How it can validate a CPF
 
+```ruby
+class Person < ActiveRecord::Base
 
-    pf = Person.new
-    pf.cpf = "11144477735"
-    pf.valid? # => true
+  attr_accessor :cpf
 
-    pf.cpf = "111.444.777-35"
-    pf.valid? # => true
-
-    pf.cpf = "111.111.111-11"
-    pf.valid? # => false
+  validates :cpf,
+    cpf: true
+end
 
 
-    c = City.new
-    c.name = "Tijucas"
-    c.uf = "SC"
+pf = Person.new
+pf.cpf = "11144477735"
+pf.valid? # => true
 
-    pj = Person.new
-    pj.city = c
+pf.cpf = "111.444.777-35" # with mask
+pf.valid? # => true
 
-    pf.ie = "253667852"
-    pf.valid? # => true
+pf.cpf = "111.111.111-11"
+pf.valid? # => false
+```
 
-    pf.ie = "253.667.852"
-    pf.valid? # => true
+### How it can validate a IE
 
-    c.uf = "SP"
-    pf.valid? # => false
+```ruby
+class City < ActiveRecord::Base
+  attr_accessor :name, :uf
 
-    c.uf = "SC"
-    pf.ie = "111.111.111"
-    pf.valid? # => false
-    ```
+  has_many :people
+end
+
+class Person < ActiveRecord::Base
+
+  attr_accessor :ie
+
+  belongs_to :city
+
+  validates :ie,
+    ie: {uf: "city#uf"} # you need to inform how it can get the "uf" attribute
+end
+
+
+c = City.new
+c.name = "Tijucas"
+c.uf = "SC"
+
+pj = Person.new
+pj.city = c
+
+pj.ie = "253667852"
+pj.valid? # => true
+
+pj.ie = "253.667.852" # with mask
+pj.valid? # => true
+
+c.uf = "SP"
+pj.valid? # => false
+
+c.uf = "SC"
+pj.ie = "111.111.111"
+pj.valid? # => false
+```
 
 ## Contributing
 
