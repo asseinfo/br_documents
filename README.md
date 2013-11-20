@@ -97,18 +97,18 @@ c.uf = "SC"
 pj = Person.new
 pj.city = c
 
-pf.ie = "253667852"
-pf.valid? # => true
+pj.ie = "253667852"
+pj.valid? # => true
 
-pf.ie = "253.667.852" # with mask
-pf.valid? # => true
+pj.ie = "253.667.852" # with mask
+pj.valid? # => true
 
 c.uf = "SP"
-pf.valid? # => false
+pj.valid? # => false
 
 c.uf = "SC"
-pf.ie = "111.111.111"
-pf.valid? # => false
+pj.ie = "111.111.111"
+pj.valid? # => false
 ```
 
 ## Contributing
