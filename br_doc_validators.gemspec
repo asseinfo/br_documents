@@ -25,4 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec",              "2.14.1"
 
   spec.add_runtime_dependency     "activemodel",         "4.0.0"
+  spec.add_runtime_dependency     "i18n",                "0.6.5"
 end
