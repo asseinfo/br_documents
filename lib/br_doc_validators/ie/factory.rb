@@ -5,7 +5,7 @@ module ValidaDocs
         if ["CE", "ES", "MA", "MS", "PB", "PI", "SE"].include?(uf)
           ValidaDocs::IE::Pattern1.new(number)
         else
-          klass = Module.const_get("ValidaDocs::IE::#{uf}")
+          klass = ValidaDocs::IE.const_get("#{uf}")
           klass.new(number)
         end
       rescue NameError
