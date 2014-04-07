@@ -6,6 +6,14 @@ module ValidaDocs
       include Commons::Mod11
 
       private
+      def format_ie(number)
+        if number.gsub(/-/, "").length == 8
+          number.sub(/(\d{6})(\d{2})/, "\\1-\\2")
+        else
+          number.sub(/(\d{7})(\d{2})/, "\\1-\\2")
+        end
+      end
+
       def valid_format?
         valid_8_digits_format or valid_9_digits_format
       end

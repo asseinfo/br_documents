@@ -9,6 +9,11 @@ module ValidaDocs
         @weight1 = [3, 2, 7, 6, 5, 4, 3, 2]
         @weight2 = [4, 3, 2, 7, 6, 5, 4, 3, 2]
       end
+
+      private
+      def format_ie(number)
+        number.sub(/(\d{8})(\d{2})/, "\\1-\\2")
+      end
     end
   end
 end

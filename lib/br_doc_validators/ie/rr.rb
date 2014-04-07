@@ -10,6 +10,10 @@ module ValidaDocs
       end
 
       private
+      def format_ie(number)
+        number.sub(/(\d{8})(\d{1})/, "\\1-\\2")
+      end
+
       def generate_digital_check(values, weights)
         sum = reduce_weights(values, weights)
         sum % 9

@@ -1,6 +1,6 @@
 # BrDocValidators
 
-It validates Brazilian documents for application use. Today it can validate CNPJ, CPF and IE.
+This gem validates Brazilian documents for application use. Today it can validate CNPJ, CPF and IE.
 
 ## Installation
 
@@ -24,7 +24,9 @@ $ gem install br_doc_validators
 
 ## Usage
 
-### How it can validate a CNPJ
+### Active Record
+
+#### CNPJ
 
 ```ruby
 class Person < ActiveRecord::Base
@@ -47,7 +49,7 @@ pj.cnpj = "11111111111111"
 pj.valid? # => false
 ```
 
-### How it can validate a CPF
+#### CPF
 
 ```ruby
 class Person < ActiveRecord::Base
@@ -70,7 +72,7 @@ pf.cpf = "111.111.111-11"
 pf.valid? # => false
 ```
 
-### How it can validate a IE
+#### IE
 
 ```ruby
 class City < ActiveRecord::Base
@@ -109,6 +111,30 @@ pj.valid? # => false
 c.uf = "SC"
 pj.ie = "111.111.111"
 pj.valid? # => false
+```
+
+### Ruby
+
+#### CNPJ
+
+```ruby
+cnpj = ValidaDocs::CnpjCpf::Cnpj.new("04.001.155/0001-01")
+cnpj.valid? # => true
+```
+
+#### CPF
+
+```ruby
+cpf = ValidaDocs::CnpjCpf::Cpf.new("111.444.777-35")
+cpf.valid? # => true
+```
+
+#### IE
+
+```ruby
+ie = ValidaDocs::IE::Factory.create("SC", "254062407")
+ie.formatted # => "254.062.407"
+ie.valid?    # => true
 ```
 
 ## Contributing

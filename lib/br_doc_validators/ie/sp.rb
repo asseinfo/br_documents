@@ -6,6 +6,14 @@ module ValidaDocs
       include Commons::Mod11
 
       private
+      def format_ie(number)
+        if number.gsub(/(\-)|(\.)|(\/)/, "").length == 13
+          number.sub(/(\w{1})(\d{8})(\d{1})(\d{3})/, "\\1-\\2.\\3/\\4")
+        else
+          number.sub(/(\d{3})(\d{3})(\d{3})(\d{3})/, "\\1.\\2.\\3.\\4")
+        end
+      end
+
       def valid_format?
         regex = /^(\d{3}\.\d{3}\.\d{3}\.\d{3})$|^(\d{12})$|^(P-\d{8}\.\d{1}\/\d{3})$/
         regex.match(@number).present?

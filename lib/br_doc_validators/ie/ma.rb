@@ -2,12 +2,7 @@ require_relative "pattern1"
 
 module ValidaDocs
   module IE
-    class AL < Pattern1
-      def initialize(number)
-        super
-        @mask = /(\d{9})$/
-      end
-
+    class MA < Pattern1
       private
       def format_ie(number)
         number

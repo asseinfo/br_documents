@@ -2,15 +2,10 @@ require_relative "pattern1"
 
 module ValidaDocs
   module IE
-    class AL < Pattern1
-      def initialize(number)
-        super
-        @mask = /(\d{9})$/
-      end
-
+    class SE < Pattern1
       private
       def format_ie(number)
-        number
+        number.sub(/(\d{8})(\d{1})/, "\\1-\\2")
       end
     end
   end

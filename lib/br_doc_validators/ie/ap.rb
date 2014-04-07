@@ -6,6 +6,10 @@ module ValidaDocs
       include Commons::Mod11
 
       private
+      def format_ie(number)
+        number
+      end
+
       def valid_format?
         regex = /(\d{9})$/
         regex.match(@number).present?

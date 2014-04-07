@@ -6,6 +6,10 @@ module ValidaDocs
       include Commons::Mod11
 
       private
+      def format_ie(number)
+        number.sub(/(\d{3})(\d{3})(\d{3})(\d{4})/, "\\1.\\2.\\3/\\4")
+      end
+
       def valid_format?
         regex = /^(\d{3}\.\d{3}\.\d{3}\.\d{2}\-\d{2})$|^(\d{13})$/
         regex.match(@number).present?

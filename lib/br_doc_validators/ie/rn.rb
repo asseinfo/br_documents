@@ -6,6 +6,14 @@ module ValidaDocs
       include Commons::Mod11
 
       private
+      def format_ie(number)
+        if number.gsub(/(\.)|(\-)/, "").length == 9
+          number.sub(/(\d{2})(\d{3})(\d{3})(\d{1})/, "\\1.\\2.\\3-\\4")
+        else
+          number.sub(/(\d{2})(\d{1})(\d{3})(\d{3})(\d{1})/, "\\1.\\2.\\3.\\4-\\5")
+        end
+      end
+
       def valid_format?
         valid_old_format or valid_new_format
       end

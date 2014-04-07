@@ -38,9 +38,9 @@ describe ValidaDocs::IE::Factory do
     end
 
     context "when uf is CE" do
-      it "returns an instance of ValidaDocs::IE::Pattern1" do
+      it "returns an instance of ValidaDocs::IE::CE" do
         ie = ValidaDocs::IE::Factory.create("CE", "123456789")
-        expect(ie).to be_an_instance_of ValidaDocs::IE::Pattern1
+        expect(ie).to be_an_instance_of ValidaDocs::IE::CE
       end
     end
 
@@ -52,9 +52,9 @@ describe ValidaDocs::IE::Factory do
     end
 
     context "when uf is ES" do
-      it "returns an instance of ValidaDocs::IE::Pattern1" do
+      it "returns an instance of ValidaDocs::IE::ES" do
         ie = ValidaDocs::IE::Factory.create("ES", "123456789")
-        expect(ie).to be_an_instance_of ValidaDocs::IE::Pattern1
+        expect(ie).to be_an_instance_of ValidaDocs::IE::ES
       end
     end
 
@@ -66,9 +66,9 @@ describe ValidaDocs::IE::Factory do
     end
 
     context "when uf is MA" do
-      it "returns an instance of ValidaDocs::IE::Pattern1" do
+      it "returns an instance of ValidaDocs::IE::MA" do
         ie = ValidaDocs::IE::Factory.create("MA", "123456789")
-        expect(ie).to be_an_instance_of ValidaDocs::IE::Pattern1
+        expect(ie).to be_an_instance_of ValidaDocs::IE::MA
       end
     end
 
@@ -80,9 +80,9 @@ describe ValidaDocs::IE::Factory do
     end
 
     context "when uf is MS" do
-      it "returns an instance of ValidaDocs::IE::Pattern1" do
+      it "returns an instance of ValidaDocs::IE::MS" do
         ie = ValidaDocs::IE::Factory.create("MS", "123456789")
-        expect(ie).to be_an_instance_of ValidaDocs::IE::Pattern1
+        expect(ie).to be_an_instance_of ValidaDocs::IE::MS
       end
     end
 
@@ -101,9 +101,9 @@ describe ValidaDocs::IE::Factory do
     end
 
     context "when uf is PB" do
-      it "returns an instance of ValidaDocs::IE::Pattern1" do
+      it "returns an instance of ValidaDocs::IE::PB" do
         ie = ValidaDocs::IE::Factory.create("PB", "123456789")
-        expect(ie).to be_an_instance_of ValidaDocs::IE::Pattern1
+        expect(ie).to be_an_instance_of ValidaDocs::IE::PB
       end
     end
 
@@ -122,9 +122,9 @@ describe ValidaDocs::IE::Factory do
     end
 
     context "when uf is PI" do
-      it "returns an instance of ValidaDocs::IE::Pattern1" do
+      it "returns an instance of ValidaDocs::IE::PI" do
         ie = ValidaDocs::IE::Factory.create("PI", "123456789")
-        expect(ie).to be_an_instance_of ValidaDocs::IE::Pattern1
+        expect(ie).to be_an_instance_of ValidaDocs::IE::PI
       end
     end
 
@@ -178,9 +178,9 @@ describe ValidaDocs::IE::Factory do
     end
 
     context "when uf is SE" do
-      it "returns an instance of ValidaDocs::IE::Pattern1" do
+      it "returns an instance of ValidaDocs::IE::SE" do
         ie = ValidaDocs::IE::Factory.create("SE", "123456789")
-        expect(ie).to be_an_instance_of ValidaDocs::IE::Pattern1
+        expect(ie).to be_an_instance_of ValidaDocs::IE::SE
       end
     end
 
