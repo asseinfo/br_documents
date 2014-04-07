@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = BrDocuments::VERSION
   spec.authors       = ["ASSEINFO - Sistemas de Informação"]
   spec.email         = ["asseinfo@asseinfo.com.br"]
-  spec.description   = "Solução para validar documentos brasileiros"
-  spec.summary       = "Solução para validar documentos brasileiros"
+  spec.description   = "Validates brazilian documents like CPF, CNPJ and IE."
+  spec.summary       = "Validates brazilian documents like CPF, CNPJ and IE. It can be used with active record or just in ruby."
   spec.homepage      = "http://github.com/asseinfo/br_documents"
   spec.license       = "MIT"
 
