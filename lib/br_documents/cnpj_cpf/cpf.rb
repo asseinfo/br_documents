@@ -16,6 +16,10 @@ module BrDocuments
 
         valid_number?(@number, regex, weight10, weight11)
       end
+
+      def formatted
+        @number.sub(/(\d{3})(\d{3})(\d{3})(\d{2})/, "\\1.\\2.\\3-\\4")
+      end
     end
   end
 end

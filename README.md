@@ -118,14 +118,16 @@ pj.valid? # => false
 #### CNPJ
 
 ```ruby
-cnpj = BrDocuments::CnpjCpf::Cnpj.new("04.001.155/0001-01")
+cnpj = BrDocuments::CnpjCpf::Cnpj.new("04001155000101")
+cnpj.formatted # => "04.001.155/0001-01"
 cnpj.valid? # => true
 ```
 
 #### CPF
 
 ```ruby
-cpf = BrDocuments::CnpjCpf::Cpf.new("111.444.777-35")
+cpf = BrDocuments::CnpjCpf::Cpf.new("11144477735")
+cpf.formatted # => "111.444.777-35"
 cpf.valid? # => true
 ```
 

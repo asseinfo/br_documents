@@ -1,6 +1,13 @@
 require "spec_helper"
 
 describe BrDocuments::CnpjCpf::Cnpj do
+  describe "#formatted" do
+    it "returns a formatted number" do
+      cnpj = BrDocuments::CnpjCpf::Cnpj.new("04001155000101")
+      expect(cnpj.formatted).to eq "04.001.155/0001-01"
+    end
+  end
+
   it "is invalid with malformed number" do
     ["242.2818/50001-54", "35.611.011/000192"].each do |number|
       cnpj = BrDocuments::CnpjCpf::Cnpj.new(number)
