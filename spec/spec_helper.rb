@@ -6,7 +6,7 @@ SimpleCov.start
 require "bundler/setup"
 Bundler.require(:default, :development)
 
-require "br_doc_validators"
+require "br_documents"
 
 Dir[File.dirname(__FILE__) + "/support/*.rb"].each { |f| require f }
 
