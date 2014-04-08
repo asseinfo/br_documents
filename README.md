@@ -1,5 +1,7 @@
 # BrDocuments
 
+[![Code Climate](https://codeclimate.com/github/asseinfo/br_documents.png)](https://codeclimate.com/github/asseinfo/br_documents) [![Build Status](https://travis-ci.org/asseinfo/br_documents.svg?branch=master)](https://travis-ci.org/asseinfo/br_documents)
+
 This gem validates Brazilian documents for application use. Today it can validate CNPJ, CPF and IE.
 
 ## Installation
