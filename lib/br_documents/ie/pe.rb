@@ -1,4 +1,5 @@
 require_relative "pattern1"
+require_relative "pattern2"
 
 module BrDocuments
   module IE
