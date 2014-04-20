@@ -1,4 +1,5 @@
 require_relative "base"
+require_relative "../commons/mod11"
 
 module BrDocuments
   module IE
