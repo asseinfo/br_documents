@@ -14,12 +14,19 @@ describe IeValidator do
 
   subject { @validator }
 
-  context "when IE is valid" do
+  context "when IE's number is valid" do
     it "doesn't add errors in model" do
       subject.validate_each(@mock, "ie", "253667852")
       expect(@mock.errors.messages).to be_empty
     end
   end
+
+  context "when IE is 'ISENTO'" do
+    it "doesn't add errors in model" do
+      subject.validate_each(@mock, "ie", "ISENTO")
+      expect(@mock.errors.messages).to be_empty
+    end
+  end  
 
   context "when IE is blank" do
     it "doesn't add errors in model" do
