@@ -4,10 +4,10 @@ describe IeValidator do
   before(:each) do
     @validator = IeValidator.new(attributes: "ie", uf: "uf")
     @mock = double("model")
-    @mock.stub(:uf) {"SC"}
-    @mock.stub(:errors).and_return([])
-    @mock.errors.stub(:messages).and_return({})
-    @mock.errors.stub(:add) do | attribute, error |
+    allow(@mock).to receive(:uf) {"SC"}
+    allow(@mock).to receive(:errors).and_return([])
+    allow(@mock.errors).to receive(:messages).and_return({})
+    allow(@mock.errors).to receive(:add) do | attribute, error |
       @mock.errors.messages[attribute] = [error]
     end
   end
@@ -44,7 +44,7 @@ describe IeValidator do
 
   context "when UF is invalid" do
     it "adds error in model" do
-      @mock.stub(:uf){""}
+      allow(@mock).to receive(:uf){""}
       subject.validate_each(@mock, "ie", "253667852")
       expect(@mock.errors.messages["ie"]).to eql [t("validator.ie.uf.invalid")]
     end
@@ -52,7 +52,7 @@ describe IeValidator do
 
   context "when it can't find attribute uf in model" do
     it "adds error in model" do
-      @mock.stub(:uf).and_raise(NoMethodError)
+      allow(@mock).to receive(:uf).and_raise(NoMethodError)
       subject.validate_each(@mock, "ie", "253667852")
       expect(@mock.errors.messages[:base]).to eql [
         t("validator.ie.uf.no_present", uf: "uf")

@@ -4,9 +4,9 @@ describe CpfValidator do
   before(:each) do
     @validator = CpfValidator.new(attributes: "cpf")
     @mock = double("model")
-    @mock.stub(:errors).and_return([])
-    @mock.errors.stub(:messages).and_return({})
-    @mock.errors.stub(:add) do | attribute, error |
+    allow(@mock).to receive(:errors).and_return([])
+    allow(@mock.errors).to receive(:messages).and_return({})
+    allow(@mock.errors).to receive(:add) do | attribute, error |
        @mock.errors.messages[attribute] = [error]
     end
   end
