@@ -2,9 +2,20 @@ require "spec_helper"
 
 describe BrDocuments::IE::TO do
   describe "#formatted" do
-    it "returns a formatted ie" do
-      ie = BrDocuments::IE::TO.new("12345678901")
-      expect(ie.formatted).to eq "12345678901"
+    context "when having 9 digits" do
+      subject { BrDocuments::IE::TO.new("123456789") }
+
+      it "returns a formatted ie" do
+        expect(subject.formatted).to eq "12.345678-9"
+      end
+    end
+
+    context "when having 11 digits" do
+      subject { BrDocuments::IE::TO.new("12345678901") }
+
+      it "returns a formatted ie" do
+        expect(subject.formatted).to eq "12.34.567890-1"
+      end
     end
   end
 
@@ -16,24 +27,70 @@ describe BrDocuments::IE::TO do
       end
     end
 
-    it "is invalid with length different to 11" do
-      ["12345678", "123456789012"].each do |number|
+    it "is invalid with length different of 9 or 11" do
+      ["12345678", "1234567890", "123456789012"].each do |number|
         ie = BrDocuments::IE::TO.new(number)
         expect(ie).to_not be_valid
       end
     end
 
-    it "is invalid with invalid check number" do
-      ["29023864406", "29023864409"].each do |number|
-        ie = BrDocuments::IE::TO.new(number)
-        expect(ie).to_not be_valid
+    context "when having 9 digits" do
+      it "is invalid with invalid check number" do
+        ["290227835", "294083153"].each do |number|
+          ie = BrDocuments::IE::TO.new(number)
+          expect(ie).to_not be_valid
+        end
+      end
+
+      it "is invalid with correct check number but invalid mask" do
+        ["29-022783-6", "29.408315.4"].each do |number|
+          ie = BrDocuments::IE::TO.new(number)
+          expect(ie).to_not be_valid
+        end
+      end
+
+      it "is valid with valid number" do
+        ["290227836", "294083154"].each do |number|
+          ie = BrDocuments::IE::TO.new(number)
+          expect(ie).to be_valid
+        end
+      end
+
+      it "is valid with valid masked number" do
+        ["29.022783-6", "29.408315-4"].each do |number|
+          ie = BrDocuments::IE::TO.new(number)
+          expect(ie).to be_valid
+        end
       end
     end
 
-    it "is valid with valid number" do
-      ["29992001436", "29992317417"].each do |number|
-        ie = BrDocuments::IE::TO.new(number)
-        expect(ie).to be_valid
+    context "when having 11 digits" do
+      it "is invalid with invalid check number" do
+        ["29023864406", "29023864409"].each do |number|
+          ie = BrDocuments::IE::TO.new(number)
+          expect(ie).to_not be_valid
+        end
+      end
+
+      it "is invalid with correct check number but invalid mask" do
+        ["29-99.200143-6", "29.99.231741.7"].each do |number|
+          ie = BrDocuments::IE::TO.new(number)
+          expect(ie).to_not be_valid
+        end
+      end
+
+      it "is valid with valid number" do
+        ["29992001436", "29992317417"].each do |number|
+          ie = BrDocuments::IE::TO.new(number)
+          expect(ie).to be_valid
+        end
+      end
+
+      it "is valid with valid masked number" do
+        ["29.99.200143-6", "29.99.231741-7"].each do |number|
+          ie = BrDocuments::IE::TO.new(number)
+          expect(ie).to be_valid
+        end
       end
     end
   end
