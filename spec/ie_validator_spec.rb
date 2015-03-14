@@ -1,72 +1,81 @@
 require "spec_helper"
 
 describe IeValidator do
-  before(:each) do
-    @validator = IeValidator.new(attributes: "ie", uf: "uf")
-    @mock = double("model")
-    allow(@mock).to receive(:uf) {"SC"}
-    allow(@mock).to receive(:errors).and_return([])
-    allow(@mock.errors).to receive(:messages).and_return({})
-    allow(@mock.errors).to receive(:add) do | attribute, error |
-      @mock.errors.messages[attribute] = [error]
+  let(:record) { double("model") }
+
+  before do
+    allow(record).to receive(:uf) {"SC"}
+    allow(record).to receive(:errors).and_return([])
+    allow(record.errors).to receive(:messages).and_return({})
+    allow(record.errors).to receive(:add) do | attribute, error |
+      record.errors.messages[attribute] = [error]
     end
   end
 
-  subject { @validator }
+  subject { IeValidator.new(attributes: "ie", uf: "uf") }
 
   context "when IE's number is valid" do
+    before { subject.validate_each(record, "ie", "253667852") }
+
     it "doesn't add errors in model" do
-      subject.validate_each(@mock, "ie", "253667852")
-      expect(@mock.errors.messages).to be_empty
+      expect(record.errors.messages).to be_empty
     end
   end
 
   context "when IE is 'ISENTO'" do
+    before { subject.validate_each(record, "ie", "ISENTO") }
+
     it "doesn't add errors in model" do
-      subject.validate_each(@mock, "ie", "ISENTO")
-      expect(@mock.errors.messages).to be_empty
+      expect(record.errors.messages).to be_empty
     end
-  end  
+  end
 
   context "when IE is blank" do
+    before { subject.validate_each(record, "ie", "") }
+
     it "doesn't add errors in model" do
-      subject.validate_each(@mock, "ie", "")
-      expect(@mock.errors.messages).to be_empty
+      expect(record.errors.messages).to be_empty
     end
   end
 
   context "when IE is invalid" do
+    before { subject.validate_each(record, "ie", "253667853") }
+
     it "adds errors in model" do
-      subject.validate_each(@mock, "ie", "253667853")
-      expect(@mock.errors.messages).to_not be_empty
+      expect(record.errors.messages).to_not be_empty
     end
   end
 
   context "when UF is invalid" do
+    before do
+      allow(record).to receive(:uf){""}
+      subject.validate_each(record, "ie", "253667852")
+    end
+
     it "adds error in model" do
-      allow(@mock).to receive(:uf){""}
-      subject.validate_each(@mock, "ie", "253667852")
-      expect(@mock.errors.messages["ie"]).to eql [t("validator.ie.uf.invalid")]
+      expect(record.errors.messages["ie"]).to eql [t("validator.ie.uf.invalid")]
     end
   end
 
   context "when it can't find attribute uf in model" do
+    before do
+      allow(record).to receive(:uf).and_raise(NoMethodError)
+      subject.validate_each(record, "ie", "253667852")
+    end
+
     it "adds error in model" do
-      allow(@mock).to receive(:uf).and_raise(NoMethodError)
-      subject.validate_each(@mock, "ie", "253667852")
-      expect(@mock.errors.messages[:base]).to eql [
-        t("validator.ie.uf.no_present", uf: "uf")
-      ]
+      expect(record.errors.messages[:base]).to eql [
+        t("validator.ie.uf.no_present", uf: "uf")]
     end
   end
 
   context "when attribute uf is not defined" do
+    subject { IeValidator.new(attributes: "ie") }
+    before { subject.validate_each(record, "ie", "253667852") }
+
     it "adds error in model" do
-      @validator = IeValidator.new(attributes: "ie")
-      subject.validate_each(@mock, "ie", "253667852")
-      expect(@mock.errors.messages[:base]).to eql [
-        t("validator.ie.uf.no_configured")
-      ]
+      expect(record.errors.messages[:base]).to eql [
+        t("validator.ie.uf.no_configured")]
     end
   end
 end
