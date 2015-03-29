@@ -120,6 +120,8 @@ pj.valid? # => false
 #### CNPJ
 
 ```ruby
+require "br_documents"
+
 cnpj = BrDocuments::CnpjCpf::Cnpj.new("04001155000101")
 cnpj.formatted # => "04.001.155/0001-01"
 cnpj.valid? # => true
@@ -128,6 +130,8 @@ cnpj.valid? # => true
 #### CPF
 
 ```ruby
+require "br_documents"
+
 cpf = BrDocuments::CnpjCpf::Cpf.new("11144477735")
 cpf.formatted # => "111.444.777-35"
 cpf.valid? # => true
@@ -136,6 +140,8 @@ cpf.valid? # => true
 #### IE
 
 ```ruby
+require "br_documents"
+
 ie = BrDocuments::IE::Factory.create("SC", "254062407")
 ie.formatted # => "254.062.407"
 ie.valid?    # => true
