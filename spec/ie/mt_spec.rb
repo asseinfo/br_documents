@@ -16,10 +16,11 @@ describe BrDocuments::IE::MT do
       end
     end
 
-    it "is invalid with length different to 11" do
-      ["123456789012", "123456789"].each do |number|
-        ie = BrDocuments::IE::MT.new(number)
-        expect(ie).to_not be_valid
+    context "when the number is greater than 11" do
+      subject { BrDocuments::IE::MT.new("123456789012") }
+
+      it "is invalid " do
+        expect(subject).to_not be_valid
       end
     end
 
@@ -31,7 +32,7 @@ describe BrDocuments::IE::MT do
     end
 
     it "is valid with valid number" do
-      ["00130000019", "82060187373"].each do |number|
+      ["0013000001-9", "82060187373", "132631946", "13.263.194-6"].each do |number|
         ie = BrDocuments::IE::MT.new(number)
         expect(ie).to be_valid
       end
