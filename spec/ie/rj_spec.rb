@@ -31,7 +31,7 @@ describe BrDocuments::IE::RJ do
     end
 
     it "is valid with valid number" do
-      ["80172010", "31864950"].each do |number|
+      ["80172010", "31.864.95-0", "85.994.964"].each do |number|
         ie = BrDocuments::IE::RJ.new(number)
         expect(ie).to be_valid
       end
