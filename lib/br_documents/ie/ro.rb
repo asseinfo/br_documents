@@ -35,16 +35,19 @@ module BrDocuments
 
       def valid_old_digital_check
         weight = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
-        @number.gsub!(/\./, "")
+        remove_mask!
         @number[-1].eql? generate_digital_check(@number[-6, 6], weight).to_s
       end
 
       def valid_new_digital_check
         weight = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
-        @number.gsub!(/\./, "")
+        remove_mask!
         @number[-1].eql? generate_digital_check(@number, weight).to_s
       end
 
+      def remove_mask!
+        @number.gsub!(/[\.\/-]/, "")
+      end
     end
   end
 end

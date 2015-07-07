@@ -20,17 +20,17 @@ module BrDocuments
       end
 
       def valid_old_format
-        regex = /^(\d{2}\.\d{3}\.\d{3}\-\d{1}})$|^(\d{9})$/
+        regex = /^(\d{2}\.\d{3}\.\d{3}\-\d{1})$|^(\d{9})$/
         regex.match(@number).present?
       end
 
       def valid_new_format
-        regex = /^(\d{2}\.\d{1}\.\d{3}\.\d{3}\-\d{1}})$|^(\d{10})$/
+        regex = /^(\d{2}\.\d{1}\.\d{3}\.\d{3}\-\d{1})$|^(\d{10})$/
         regex.match(@number).present?
       end
 
       def valid_digital_check?
-        @number.gsub!(/\./, "")
+        @number.gsub!(/[\.\/-]/, "")
 
         weight = []
         @number.length.downto(2).each {|w| weight << w }

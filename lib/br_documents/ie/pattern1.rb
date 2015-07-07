@@ -19,8 +19,23 @@ module BrDocuments
       end
 
       def valid_digital_check?
-        @number.gsub!(/[\.\/-]/, "")
-        @number[-1].eql? generate_digital_check(@number, @weight).to_s
+        calculated_check_digit = generate_digital_check(only_numbers, @weight).to_s
+        check_digit_valid = check_digit.eql? calculated_check_digit
+        remove_mask_of_number if check_digit_valid
+
+        check_digit_valid
+      end
+
+      def check_digit
+        only_numbers[-1]
+      end
+
+      def remove_mask_of_number
+        @number.replace only_numbers
+      end
+
+      def only_numbers
+        @number.gsub(/[\.\/-]/, "")
       end
     end
   end

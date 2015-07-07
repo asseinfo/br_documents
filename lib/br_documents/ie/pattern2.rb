@@ -19,7 +19,7 @@ module BrDocuments
       end
 
       def valid_digital_check?
-        @number.gsub!(/-/, "")
+        @number.gsub!(/[\.\/-]/, "")
 
         digital_check1 = generate_digital_check(@number, @weight1)
         digital_check2 = generate_digital_check(@number, @weight2)

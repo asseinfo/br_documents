@@ -19,7 +19,6 @@ module BrDocuments
       def valid_digital_check?
         weight = [9, 8, 7, 6, 5, 4, 3, 2]
         detect_range_digits
-        @number.gsub!(/\./, "")
         @number[-1].eql? generate_digital_check(@number, weight).to_s
       end
 

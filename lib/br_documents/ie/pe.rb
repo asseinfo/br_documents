@@ -5,7 +5,7 @@ module BrDocuments
   module IE
     class PE
       def initialize(number)
-        if number.gsub(/-/, "").length <= 9
+        if number.gsub(/[\.\/-]/, "").length <= 9
           @validator = PE9.new(number)
         else
           @validator = PE14.new(number)
@@ -24,7 +24,7 @@ module BrDocuments
       class PE14 < Pattern1
         def initialize(number)
           super
-          @mask = /^(\d{2}\.\d{1}\.\d{3}\.\d{7})$|^(\d{14})$/
+          @mask = /^(\d{2}\.\d{1}\.\d{3}\.\d{7}\-\d{1})$|^(\d{14})$/
           @weight = [5, 4, 3, 2, 1, 9, 8, 7, 6, 5, 4, 3, 2]
         end
 

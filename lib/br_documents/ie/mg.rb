@@ -17,7 +17,7 @@ module BrDocuments
       end
 
       def valid_digital_check?
-        @number.gsub!(/-/, "")
+        @number.gsub!(/[\.\/-]/, "")
 
         number1 = @number[0, 3] + "0" + @number[3..10]
         weight1 = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
