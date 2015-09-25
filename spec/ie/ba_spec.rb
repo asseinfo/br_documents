@@ -42,7 +42,7 @@ RSpec.describe BrDocuments::IE::BA do
       end
 
       it "is valid with valid number" do
-        ["12345663", "61234557"].each do |number|
+        ["123456-63", "61234557"].each do |number|
           ie = described_class.new(number)
           expect(ie).to be_valid
         end
@@ -56,11 +56,14 @@ RSpec.describe BrDocuments::IE::BA do
       end
 
       it "is valid with valid number" do
-        ie = described_class.new("100000306")
-        expect(ie).to be_valid
+        ["1000003-06", "066.486.527"].each do |number|
+          ie = described_class.new(number)
+          expect(ie).to be_valid
+        end
       end
     end
 
     include_examples "for to remove all masks", "1000003-06"
+    include_examples "for to remove all masks", "100.000.306"
   end
 end
