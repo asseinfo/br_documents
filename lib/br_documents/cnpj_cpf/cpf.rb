@@ -5,19 +5,17 @@ module BrDocuments
     class Cpf
       include Document
 
-      def initialize(number)
-        @number = number
+      private
+
+      def format_regex
+        /^(\d{3}\.\d{3}\.\d{3}-\d{2})$|^(\d{11})$/
       end
 
-      def valid?
-        regex = /^(\d{3}\.\d{3}\.\d{3}-\d{2})$|^(\d{11})$/
-        weight10 = [10, 9, 8, 7, 6, 5, 4, 3, 2]
-        weight11 = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
-
-        valid_number?(@number, regex, weight10, weight11)
+      def weights_for_digital_check
+        [[10, 9, 8, 7, 6, 5, 4, 3, 2], [11, 10, 9, 8, 7, 6, 5, 4, 3, 2]]
       end
 
-      def formatted
+      def format_number
         @number.sub(/(\d{3})(\d{3})(\d{3})(\d{2})/, "\\1.\\2.\\3-\\4")
       end
     end

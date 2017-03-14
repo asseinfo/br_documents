@@ -6,6 +6,13 @@ describe BrDocuments::CnpjCpf::Cpf do
       cpf = BrDocuments::CnpjCpf::Cpf.new("11144477735")
       expect(cpf.formatted).to eq "111.444.777-35"
     end
+
+    context "when is invalid" do
+      it "returns an empty string" do
+        cpf = BrDocuments::CnpjCpf::Cpf.new("123")
+        expect(cpf.formatted).to eq ""
+      end
+    end
   end
 
   it "is invalid with malformed number" do
