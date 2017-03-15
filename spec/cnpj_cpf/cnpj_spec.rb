@@ -6,6 +6,13 @@ describe BrDocuments::CnpjCpf::Cnpj do
       cnpj = BrDocuments::CnpjCpf::Cnpj.new("04001155000101")
       expect(cnpj.formatted).to eq "04.001.155/0001-01"
     end
+
+    context "when is invalid" do
+      it "returns an empty string" do
+        cnpj = BrDocuments::CnpjCpf::Cnpj.new("123")
+        expect(cnpj.formatted).to eq ""
+      end
+    end
   end
 
   it "is invalid with malformed number" do
