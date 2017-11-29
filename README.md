@@ -147,6 +147,10 @@ ie.formatted # => "254.062.407"
 ie.valid?    # => true
 ```
 
+## How to add contributors
+
+		gem owner --add leandrolourenci@gmail.com br_documents
+
 ## Contributing
 
 1. Fork it
