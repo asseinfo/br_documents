@@ -22,14 +22,6 @@ describe IeValidator do
     end
   end
 
-  context "when IE is 'ISENTO'" do
-    before { subject.validate_each(record, "ie", "ISENTO") }
-
-    it "adds errors in model" do
-      expect(record.errors.messages).to_not be_empty
-    end
-  end
-
   context "when IE is blank" do
     before { subject.validate_each(record, "ie", "") }
 
