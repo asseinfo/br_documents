@@ -1,8 +1,8 @@
 class IeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if ie_present?(value)
-      attribute_uf_was_configured_at_validator?(record, attribute) and
-      can_read_uf_at_record?(options, record, attribute) and
+      attribute_uf_was_configured_at_validator?(record) and
+      can_read_uf_at_record?(options, record) and
       ie_valid?(record, attribute, value)
     end
   end
@@ -12,13 +12,13 @@ class IeValidator < ActiveModel::EachValidator
     value.present?
   end
 
-  def attribute_uf_was_configured_at_validator?(record, attribute)
+  def attribute_uf_was_configured_at_validator?(record)
     record.errors.add(:base,
       I18n.t("validator.ie.uf.no_configured")) unless options[:uf].present?
     record.errors.messages.empty?
   end
 
-  def can_read_uf_at_record?(options, record, attribute)
+  def can_read_uf_at_record?(options, record)
     begin
       read_uf(record)
     rescue NoMethodError
