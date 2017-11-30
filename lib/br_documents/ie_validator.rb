@@ -31,9 +31,7 @@ class IeValidator < ActiveModel::EachValidator
 
   def ie_valid?(record, attribute, value)
     begin
-      if (not number_valid?(record, value)) && (not exempted?(value))
-        record.errors.add(attribute, :invalid)
-      end  
+      record.errors.add(attribute, :invalid) unless number_valid?(record, value)
     rescue ArgumentError => ex
       record.errors.add(attribute, ex.message)
     end
@@ -44,10 +42,6 @@ class IeValidator < ActiveModel::EachValidator
     uf = read_uf(record)
     ie_number = BrDocuments::IE::Factory.create(uf, value)
     ie_number.valid?
-  end  
-
-  def exempted?(value)
-    "isento".casecmp(value) == 0
   end  
 
   def read_uf(record)
