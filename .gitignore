@@ -5,6 +5,7 @@
 .yardoc
 .idea/
 Gemfile.lock
+.byebug_history
 InstalledFiles
 _yardoc
 coverage
