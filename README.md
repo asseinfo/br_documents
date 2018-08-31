@@ -147,9 +147,20 @@ ie.formatted # => "254.062.407"
 ie.valid?    # => true
 ```
 
+## Environment variables
+
+The following variables are necessary to be set:
+
+Environment var                | Development? | Test? | CI  | Production? | Data
+-------------------------------|--------------|-------|-----|-------------|-----
+TZ                             | no           | no    | yes | no          | America/Sao_Paulo
+BUNDLE_PATH                    | no           | no    | yes | no          | ./vendor/bundle
+CC_TEST_REPORTER_ID            | no           | no    | yes | no          | get at codeclimate
+RAILS_ENV                      | no           | no    | yes | no          | test
+
 ## How to add contributors
 
-		gem owner --add leandrolourenci@gmail.com br_documents
+    gem owner --add leandrolourenci@gmail.com br_documents
 
 ## Contributing
 
