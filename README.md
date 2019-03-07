@@ -158,6 +158,19 @@ BUNDLE_PATH                    | no           | no    | yes | no          | ./ve
 CC_TEST_REPORTER_ID            | no           | no    | yes | no          | get at codeclimate
 RAILS_ENV                      | no           | no    | yes | no          | test
 
+## Deploy to Rubygems
+
+    $ bundle exec rake release  # Create tag vX.X.X, build and push br_documents-X.X.X.gem to Rubygems
+
+You can build or install using one of the above tasks
+
+    $ bundle exec rake build    # Build br_documents-X.X.X.gem into the pkg directory
+    $ bundle exec rake install  # Build and install br_documents-X.X.X.gem into system gems
+
+#### Login
+    $ gem signin
+    $ gem signout
+
 ## How to add contributors
 
     gem owner --add leandrolourenci@gmail.com br_documents
