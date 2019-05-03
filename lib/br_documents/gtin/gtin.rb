@@ -5,7 +5,7 @@ module BrDocuments
     end
 
     def valid?
-      valid_checksum? if valid_length?
+      valid_length? && valid_checksum?
     end
 
     private
