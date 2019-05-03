@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe EanValidator do
+describe GtinValidator do
   let(:record) { double("model") }
 
   before do
@@ -11,37 +11,37 @@ describe EanValidator do
     end
   end
 
-  subject { EanValidator.new(attributes: "ean") }
+  subject { GtinValidator.new(attributes: "gtin") }
 
-  context "when EAN code is valid" do
-    before { subject.validate_each(record, "ean", "1243658721548") }
-
-    it "doesn't add errors in model" do
-      expect(record.errors.messages).to be_empty
-    end
-  end
-
-  context "when EAN is blank" do
-    before { subject.validate_each(record, "ean", "") }
+  context "when GTIN code is valid" do
+    before { subject.validate_each(record, "gtin", "1243658721548") }
 
     it "doesn't add errors in model" do
       expect(record.errors.messages).to be_empty
     end
   end
 
-  context "when EAN is nil" do
-    before { subject.validate_each(record, "ean", nil) }
+  context "when GTIN is blank" do
+    before { subject.validate_each(record, "gtin", "") }
 
     it "doesn't add errors in model" do
       expect(record.errors.messages).to be_empty
     end
   end
 
-  context "when EAN is invalid" do
-    before { subject.validate_each(record, "ean", "253667853") }
+  context "when GTIN is nil" do
+    before { subject.validate_each(record, "gtin", nil) }
+
+    it "doesn't add errors in model" do
+      expect(record.errors.messages).to be_empty
+    end
+  end
+
+  context "when GTIN is invalid" do
+    before { subject.validate_each(record, "gtin", "253667853") }
 
     it "adds errors in model" do
-      expect(record.errors.messages).to include 'ean' => [:invalid]
+      expect(record.errors.messages).to include 'gtin' => [:invalid]
     end
   end
 end

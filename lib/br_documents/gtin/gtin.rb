@@ -1,25 +1,20 @@
 module BrDocuments
-  class Ean
+  class Gtin
     def initialize(code)
       @code = code
     end
 
     def valid?
-      if valid_length?
-        current_checksum = @code.chars.last.to_i
-        calculated_checksum = checksum
-
-        current_checksum.eql?(calculated_checksum)
-      end
+      valid_checksum? if valid_length?
     end
 
     private
 
     def valid_length?
-      [8, 13, 14].include?(@code.length)
+      [8, 12, 13, 14].include?(@code.length)
     end
 
-    def checksum
+    def valid_checksum?
       numbers = @code.chars[0, @code.length - 1].reverse
       odd = even = 0
 
@@ -27,7 +22,7 @@ module BrDocuments
         (i + 1).even? ? (even += number.to_i) : (odd += number.to_i * 3)
       end
 
-      (10 - (odd + even) % 10)
+      @code.chars.last.to_i == (10 - (odd + even) % 10)
     end
   end
 end
