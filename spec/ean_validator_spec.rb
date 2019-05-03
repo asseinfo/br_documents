@@ -41,7 +41,7 @@ describe EanValidator do
     before { subject.validate_each(record, "ean", "253667853") }
 
     it "adds errors in model" do
-      expect(record.errors.messages).to_not be_empty
+      expect(record.errors.messages).to include 'ean' => [:invalid]
     end
   end
 end

@@ -2,25 +2,36 @@ require "spec_helper"
 
 describe BrDocuments::Ean do
   describe "#valid?" do
-    it "is invalid with length different to 8, 13 and 14" do
-      ["123456189", "114567854871"].each do |code|
-        ean = described_class.new(code)
-        expect(ean).to_not be_valid
+    context 'when the checksum is valid' do
+      context 'when the EAN has 8 digits' do
+        subject { described_class.new('12345618') }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'when the EAN has 13 digits' do
+        subject { described_class.new('1145678548719') }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'when the EAN has 14 digits' do
+        subject { described_class.new('1234567891125') }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'when the number of digits is different of 8, 13 or 14' do
+        subject { described_class.new('114567854874') }
+
+        it { is_expected.to_not be_valid }
       end
     end
 
-    it "is invalid with invalid check number" do
-      ["12345611", "1145678548712", "1234567891127"].each do |number|
-        ean = described_class.new(number)
-        expect(ean).to_not be_valid
-      end
-    end
+    context 'when the checksum is invald' do
+      subject { described_class.new('1145678548712') }
 
-    it "is valid with valid code" do
-      ["12345618", "1145678548719", "1234567891125"].each do |number|
-        ean = described_class.new(number)
-        expect(ean).to be_valid
-      end
+      it { is_expected.to_not be_valid }
     end
   end
 end
