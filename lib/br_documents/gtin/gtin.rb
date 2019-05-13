@@ -22,7 +22,7 @@ module BrDocuments
         (i + 1).even? ? (even += number.to_i) : (odd += number.to_i * 3)
       end
 
-      @code.chars.last.to_i == (10 - (odd + even) % 10)
+      @code.chars.last.to_i == ((10 - (odd + even)) % 10)
     end
   end
 end

@@ -27,6 +27,12 @@ describe BrDocuments::Gtin do
         it { is_expected.to be_valid }
       end
 
+      context 'when the final digit is zero' do
+        subject { described_class.new('7898417964120') }
+
+        it { is_expected.to be_valid }
+      end
+
       context 'when the number of digits is different of 8, 13 or 14' do
         subject { described_class.new('12345678901234560') }
 
