@@ -1,10 +1,10 @@
 require_relative "base"
-require_relative "../commons/mod11"
+require_relative "../commons/mod14"
 
 module BrDocuments
   module IE
     class RO < Base
-      include Commons::Mod11
+      include Commons::Mod14
 
       private
       def format_ie(number)
