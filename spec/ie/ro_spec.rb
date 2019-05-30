@@ -52,7 +52,7 @@ describe BrDocuments::IE::RO do
       end
 
       it "is valid with valid number" do
-        ie = described_class.new("00000000625213")
+        ie = described_class.new("00000003497861")
         expect(ie).to be_valid
       end
     end
