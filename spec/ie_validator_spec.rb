@@ -5,10 +5,12 @@ RSpec.describe IeValidator do
 
   before do
     allow(record).to receive(:uf) {'SC'}
-    allow(record).to receive(:errors).and_return([])
+    allow(record).to receive(:errors).and_return({})
     allow(record.errors).to receive(:messages).and_return({})
     allow(record.errors).to receive(:add) do | attribute, error |
-      record.errors.messages[attribute] = [error]
+      record.errors[attribute] ||= []
+      record.errors[attribute] << error
+      record.errors.messages[attribute] = record.errors[attribute]
     end
   end
 
@@ -31,21 +33,29 @@ RSpec.describe IeValidator do
   end
 
   context 'when IE is invalid' do
-    before { subject.validate_each(record, 'ie', '253667853') }
+    it 'adds :invalid error in the model' do
+      subject.validate_each(record, 'ie', '253667853')
 
-    it 'adds errors in model' do
-      expect(record.errors.messages).to_not be_empty
+      expect(record.errors.messages['ie']).to include(:invalid)
+    end
+
+    it 'does not override the previous message' do
+      record.errors.add('ie', 'another error message')
+      subject.validate_each(record, 'ie', '253667853')
+
+      expect(record.errors.messages['ie']).to include('another error message')
+      expect(record.errors.messages['ie']).to include(:invalid)
     end
   end
 
   context 'when UF is invalid' do
     before do
-      allow(record).to receive(:uf){''}
+      allow(record).to receive(:uf) {'XX'}
       subject.validate_each(record, 'ie', '253667852')
     end
 
     it 'adds error in model' do
-      expect(record.errors.messages['ie']).to eql [t('validator.ie.uf.invalid')]
+      expect(record.errors.messages['ie']).to include t('validator.ie.uf.invalid')
     end
   end
 

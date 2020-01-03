@@ -1,10 +1,9 @@
 class IeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    if ie_present?(value)
-      attribute_uf_was_configured_at_validator?(record) and
-      can_read_uf_at_record?(options, record) and
+    ie_present?(value) &&
+      attribute_uf_was_configured_at_validator?(record) &&
+      can_read_uf_at_record?(options, record) &&
       ie_valid?(record, attribute, value)
-    end
   end
 
   private
@@ -15,18 +14,20 @@ class IeValidator < ActiveModel::EachValidator
   def attribute_uf_was_configured_at_validator?(record)
     record.errors.add(:base,
       I18n.t("validator.ie.uf.no_configured")) unless options[:uf].present?
-    record.errors.messages.empty?
+
+    options[:uf].present?
   end
 
   def can_read_uf_at_record?(options, record)
     begin
-      read_uf(record)
+      uf = read_uf(record)
     rescue NoMethodError
       record.errors.add(:base, I18n.t("validator.ie.uf.no_present",
         uf: options[:uf])
       )
     end
-    record.errors.messages.empty?
+
+    uf.present?
   end
 
   def ie_valid?(record, attribute, value)
@@ -42,7 +43,7 @@ class IeValidator < ActiveModel::EachValidator
     uf = read_uf(record)
     ie_number = BrDocuments::IE::Factory.create(uf, value)
     ie_number.valid?
-  end  
+  end
 
   def read_uf(record)
     attribute = record
