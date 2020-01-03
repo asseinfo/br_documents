@@ -1,73 +1,83 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe IeValidator do
-  let(:record) { double("model") }
+RSpec.describe IeValidator do
+  let(:record) { double('model') }
 
   before do
-    allow(record).to receive(:uf) {"SC"}
-    allow(record).to receive(:errors).and_return([])
+    allow(record).to receive(:uf) {'SC'}
+    allow(record).to receive(:errors).and_return({})
     allow(record.errors).to receive(:messages).and_return({})
     allow(record.errors).to receive(:add) do | attribute, error |
-      record.errors.messages[attribute] = [error]
+      record.errors[attribute] ||= []
+      record.errors[attribute] << error
+      record.errors.messages[attribute] = record.errors[attribute]
     end
   end
 
-  subject { IeValidator.new(attributes: "ie", uf: "uf") }
+  subject { IeValidator.new(attributes: 'ie', uf: 'uf') }
 
   context "when IE's number is valid" do
-    before { subject.validate_each(record, "ie", "253667852") }
+    before { subject.validate_each(record, 'ie', '253667852') }
 
-    it "doesn't add errors in model" do
+    it 'does not add errors in model' do
       expect(record.errors.messages).to be_empty
     end
   end
 
-  context "when IE is blank" do
-    before { subject.validate_each(record, "ie", "") }
+  context 'when IE is blank' do
+    before { subject.validate_each(record, 'ie', '') }
 
-    it "doesn't add errors in model" do
+    it 'does not add errors in model' do
       expect(record.errors.messages).to be_empty
     end
   end
 
-  context "when IE is invalid" do
-    before { subject.validate_each(record, "ie", "253667853") }
+  context 'when IE is invalid' do
+    it 'adds :invalid error in the model' do
+      subject.validate_each(record, 'ie', '253667853')
 
-    it "adds errors in model" do
-      expect(record.errors.messages).to_not be_empty
+      expect(record.errors.messages['ie']).to include(:invalid)
+    end
+
+    it 'does not override the previous message' do
+      record.errors.add('ie', 'another error message')
+      subject.validate_each(record, 'ie', '253667853')
+
+      expect(record.errors.messages['ie']).to include('another error message')
+      expect(record.errors.messages['ie']).to include(:invalid)
     end
   end
 
-  context "when UF is invalid" do
+  context 'when UF is invalid' do
     before do
-      allow(record).to receive(:uf){""}
-      subject.validate_each(record, "ie", "253667852")
+      allow(record).to receive(:uf) {'XX'}
+      subject.validate_each(record, 'ie', '253667852')
     end
 
-    it "adds error in model" do
-      expect(record.errors.messages["ie"]).to eql [t("validator.ie.uf.invalid")]
+    it 'adds error in model' do
+      expect(record.errors.messages['ie']).to include t('validator.ie.uf.invalid')
     end
   end
 
-  context "when it can't find attribute uf in model" do
+  context 'when cannot be found attribute uf in model' do
     before do
       allow(record).to receive(:uf).and_raise(NoMethodError)
-      subject.validate_each(record, "ie", "253667852")
+      subject.validate_each(record, 'ie', '253667852')
     end
 
-    it "adds error in model" do
+    it 'adds error in model' do
       expect(record.errors.messages[:base]).to eql [
-        t("validator.ie.uf.no_present", uf: "uf")]
+        t('validator.ie.uf.no_present', uf: 'uf')]
     end
   end
 
-  context "when attribute uf is not defined" do
-    subject { IeValidator.new(attributes: "ie") }
-    before { subject.validate_each(record, "ie", "253667852") }
+  context 'when attribute uf is not defined' do
+    subject { IeValidator.new(attributes: 'ie') }
+    before { subject.validate_each(record, 'ie', '253667852') }
 
-    it "adds error in model" do
+    it 'adds error in model' do
       expect(record.errors.messages[:base]).to eql [
-        t("validator.ie.uf.no_configured")]
+        t('validator.ie.uf.no_configured')]
     end
   end
 end
