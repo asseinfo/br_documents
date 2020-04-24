@@ -16,7 +16,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.1, >= 2.1.8)
-    byebug (10.0.2)
+    byebug (11.1.3)
     codeclimate-test-reporter (1.0.7)
       simplecov
     concurrent-ruby (1.1.5)
@@ -56,7 +56,7 @@ PLATFORMS
 DEPENDENCIES
   br_documents!
   bundler (>= 1.3)
-  byebug (= 10.0.2)
+  byebug (= 11.1.3)
   codeclimate-test-reporter
   rake (>= 10.1.0)
   rspec (>= 3.0.0)
