@@ -11,31 +11,32 @@ jobs:
     
     steps:
       - checkout
-      - name: Restore cache Gemfile
-        uses: actions/cache@v2
-        with:
-          path: .
-          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
-          restore-keys: br-documents-cache-v1-
+      - uses: actions/cache@v2
+          name: Restore cache Gemfile
+          with:
+            path: .
+            key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+            restore-keys: br-documents-cache-v1-
 
       - name: Run bundle
       - run: bundle check || bundle install
 
-      - name: Save cache
-        uses: actions/cache@v2
-        with:
-          path: ./vendor/bundle
-          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+      - uses: actions/cache@v2
+          name: Save cache
+          with:
+            path: ./vendor/bundle
+            key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
 
   rspec:
     container: circleci/ruby:2.5.1
+
     steps:
-      - name: Restore cache Gemfile
-        uses: actions/cache@v2
-        with:
-          path: .
-          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
-          restore-keys: br-documents-cache-v1-
+      - uses: actions/cache@v2
+          name: Restore cache Gemfile
+          with:
+            path: .
+            key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+            restore-keys: br-documents-cache-v1-
       
       - name: Install Test Coverage for CodeClimate
       - run: |
