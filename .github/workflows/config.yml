@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
@@ -14,30 +14,29 @@ jobs:
         with:
           ruby-version: 2.6
 
-
       - uses: actions/cache@v2
-          name: Restore cache Gemfile
-          with:
-            path: .
-            key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
-            restore-keys: br-documents-cache-v1-
+      - name: Restore cache Gemfile
+        with:
+          path: .
+          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+          restore-keys: br-documents-cache-v1-
 
       - name: Run bundle
       - run: bundle check || bundle install
 
       - uses: actions/cache@v2
-          name: Save cache
-          with:
-            path: ./vendor/bundle
-            key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+      - name: Save cache
+        with:
+          path: ./vendor/bundle
+          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
 
       - uses: actions/cache@v2
-          name: Restore cache Gemfile
-          with:
-            path: .
-            key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
-            restore-keys: br-documents-cache-v1-
-      
+      - name: Restore cache Gemfile
+        with:
+          path: .
+          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+          restore-keys: br-documents-cache-v1-
+
       - name: Install Test Coverage for CodeClimate
       - run: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
