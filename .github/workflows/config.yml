@@ -7,10 +7,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
-    container: circleci/ruby:2.5.1
-    
     steps:
-      - checkout
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+      - uses: ruby/setup-ruby@v2
+        with:
+          ruby-version: 2.6
+
+
       - uses: actions/cache@v2
           name: Restore cache Gemfile
           with:
@@ -27,10 +31,6 @@ jobs:
             path: ./vendor/bundle
             key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
 
-  rspec:
-    container: circleci/ruby:2.5.1
-
-    steps:
       - uses: actions/cache@v2
           name: Restore cache Gemfile
           with:
