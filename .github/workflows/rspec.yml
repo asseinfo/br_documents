@@ -1,0 +1,7 @@
+version: 2
+main:
+  jobs:
+    - build
+    - rspec:
+        needs:
+          - build

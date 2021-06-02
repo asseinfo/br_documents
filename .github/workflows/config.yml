@@ -1,0 +1,46 @@
+name: Containers
+
+on: [push]
+
+version: 2
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    container: circleci/ruby:2.5.1
+    
+    steps:
+      - checkout
+      - name: Restore cache Gemfile
+        uses: actions/cache@v2
+        with:
+          path: .
+          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+          restore-keys: br-documents-cache-v1-
+
+      - name: Run bundle
+      - run: bundle check || bundle install
+
+      - name: Save cache
+        uses: actions/cache@v2
+        with:
+          path: ./vendor/bundle
+          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+
+  rspec:
+    container: circleci/ruby:2.5.1
+    steps:
+      - name: Restore cache Gemfile
+        uses: actions/cache@v2
+        with:
+          path: .
+          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+          restore-keys: br-documents-cache-v1-
+      
+      - name: Install Test Coverage for CodeClimate
+      - run: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run: ./cc-test-reporter before-build
+      - run: bundle exec rspec
+      - run: ./cc-test-reporter after-build --exit-code $?
