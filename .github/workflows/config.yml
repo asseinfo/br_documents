@@ -27,7 +27,11 @@ jobs:
           key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
 
   rspec:
-      needs: build
+    runs-on: ubuntu-latest
+
+    needs: build
+      
+    steps:
       - uses: actions/cache@v2
         with:
           path: .
