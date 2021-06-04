@@ -38,9 +38,9 @@ jobs:
           restore-keys: br-documents-cache-v1-
 
       - name: Install Test Coverage for CodeClimate
-      - run: |
+        run: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
-      - run: ./cc-test-reporter before-build
-      - run: bundle exec rspec
-      - run: ./cc-test-reporter after-build --exit-code $?
+        run: ./cc-test-reporter before-build
+        run: bundle exec rspec
+        run: ./cc-test-reporter after-build --exit-code $?
