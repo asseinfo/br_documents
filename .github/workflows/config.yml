@@ -26,6 +26,8 @@ jobs:
           path: ./vendor/bundle
           key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
 
+  rspec:
+      needs: build
       - uses: actions/cache@v2
         with:
           path: .
@@ -37,4 +39,4 @@ jobs:
             chmod +x ./cc-test-reporter
       - run: ./cc-test-reporter before-build
       - run: bundle exec rspec
-      - run: ./cc-test-reporter after-build --exit-code ${{secrets.CC_TEST_REPORTER_ID}}?
+      - run: ./cc-test-reporter after-build --exit-code $?
