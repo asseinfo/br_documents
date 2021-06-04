@@ -24,6 +24,11 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ./vendor/bundle
+          key: br-documents-cache-v1-{{ $GITHUB_SHA }}
+
+      - uses: actions/cache@v2
+        with:
+          path: ./vendor/bundle
           key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
 
   rspec:
