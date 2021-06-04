@@ -33,6 +33,4 @@ jobs:
       - run: |
             ./cc-test-reporter before-build
             bundle exec rspec
-            ./cc-test-reporter after-build -r $CC_TEST_REPORTER_ID --exit-code $?
-        env:
-           CC_TEST_REPORTER_ID: fcdce38fdc40812bb038186980f11f72939e41be02f372371e535ffd63fed22b
+            ./cc-test-reporter after-build -r ${{secrets.CC_TEST_REPORTER_ID}} --exit-code $?
