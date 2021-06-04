@@ -50,4 +50,6 @@ jobs:
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
             bundle exec rspec
-            ./cc-test-reporter after-build -d --exit-code $CC_TEST_REPORTER_ID
+            ./cc-test-reporter after-build --exit-code $CC_TEST_REPORTER_ID
+        env:
+           CC_TEST_REPORTER_ID: fcdce38fdc40812bb038186980f11f72939e41be02f372371e535ffd63fed22b
