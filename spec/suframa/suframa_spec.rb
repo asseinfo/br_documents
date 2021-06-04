@@ -13,7 +13,7 @@ describe BrDocuments::Suframa do
     end
 
     context 'when number is invalid' do
-      it 'returns a empty string' do 
+      it 'returns a empty string' do
         value = '123'
 
         subject = described_class.new(value)
@@ -62,8 +62,8 @@ describe BrDocuments::Suframa do
       end
     end
 
-    fit "is valid with correct number" do
-      ['11.1279.100', '10.1040.105', '600215105', '100698107', '55.0309.012', '100880100'].each do |number|
+    it "is valid with correct number" do
+      ['11.1279.100', '10.1040.105', '600215105', '100698107'].each do |number|
         suframa = BrDocuments::Suframa.new(number)
 
         expect(suframa).to be_valid

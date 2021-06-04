@@ -115,6 +115,29 @@ pj.ie = "111.111.111"
 pj.valid? # => false
 ```
 
+#### SUFRAMA
+
+```ruby
+class Person < ActiveRecord::Base
+
+  attr_accessor :suframa
+
+  validates :suframa,
+    suframa: true
+end
+
+
+pj = Person.new
+pj.suframa = "100698107"
+pj.valid? # => true
+
+pj.suframa = "10.0698.107" # with mask
+pj.valid? # => true
+
+pj.suframa = "11.1111.111"
+pj.valid? # => false
+```
+
 ### Ruby
 
 #### CNPJ
@@ -145,6 +168,16 @@ require "br_documents"
 ie = BrDocuments::IE::Factory.create("SC", "254062407")
 ie.formatted # => "254.062.407"
 ie.valid?    # => true
+```
+
+#### SUFRAMA
+
+```ruby
+require "br_documents"
+
+suframa = BrDocuments::Suframa.new("100698107")
+suframa.formatted # => "10.0698.107"
+suframa.valid? # => true
 ```
 
 ## Environment variables
