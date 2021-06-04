@@ -37,4 +37,4 @@ jobs:
             chmod +x ./cc-test-reporter
       - run: ./cc-test-reporter before-build
       - run: bundle exec rspec
-      - run: ./cc-test-reporter after-build --exit-code $?
+      - run: ./cc-test-reporter after-build
