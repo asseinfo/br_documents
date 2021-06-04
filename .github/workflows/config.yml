@@ -34,6 +34,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: actions/cache@v2
+        with:
+          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.3
