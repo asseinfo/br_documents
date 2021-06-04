@@ -14,24 +14,24 @@ jobs:
         with:
           ruby-version: 2.6
 
-      - uses: actions/cache@v2
       - name: Restore cache Gemfile
+      - uses: actions/cache@v2
         with:
           path: .
           key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
           restore-keys: br-documents-cache-v1-
 
       - name: Run bundle
-      - run: bundle check || bundle install
+        run: bundle check || bundle install
 
-      - uses: actions/cache@v2
       - name: Save cache
+      - uses: actions/cache@v2
         with:
           path: ./vendor/bundle
           key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
 
-      - uses: actions/cache@v2
       - name: Restore cache Gemfile
+      - uses: actions/cache@v2
         with:
           path: .
           key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
@@ -41,6 +41,6 @@ jobs:
         run: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
-        run: ./cc-test-reporter before-build
-        run: bundle exec rspec
-        run: ./cc-test-reporter after-build --exit-code $?
+      - run: ./cc-test-reporter before-build
+      - run: bundle exec rspec
+      - run: ./cc-test-reporter after-build --exit-code $?
