@@ -41,7 +41,8 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ./vendor/bundle
-          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+          key: br-documents-cache-v1-{{ $GITHUB_SHA }}
+          restore-keys: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
 
       - run: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
