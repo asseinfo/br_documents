@@ -12,24 +12,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.3
-
-      - uses: actions/cache@v2
-        with:
-          path: .
-          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
-          restore-keys: br-documents-cache-v1-
-
-      - run: bundle check || bundle install
-
-      - uses: actions/cache@v2
-        with:
-          path: ./vendor/bundle
-          key: br-documents-cache-v1-{{ $GITHUB_SHA }}
-
-      - uses: actions/cache@v2
-        with:
-          path: ./vendor/bundle
-          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
+          bundler-cache: true
 
   rspec:
     runs-on: ubuntu-latest
@@ -42,13 +25,6 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.3
-
-      - run: bundle check || bundle install
-      - uses: actions/cache@v2
-        with:
-          path: .
-          key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
-          restore-keys: br-documents-cache-v1-
 
       - run: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
