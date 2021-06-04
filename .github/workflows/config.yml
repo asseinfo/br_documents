@@ -50,4 +50,4 @@ jobs:
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
             bundle exec rspec
-            ./cc-test-reporter after-build
+            ./cc-test-reporter after-build --exit-code $CC_TEST_REPORTER_ID
