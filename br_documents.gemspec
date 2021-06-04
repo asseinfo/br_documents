@@ -22,9 +22,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "i18n", ">= 0.6.5"
 
   spec.add_development_dependency "bundler", ">= 1.3"
-  spec.add_development_dependency "rake", ">= 13.0.1"
+  spec.add_development_dependency "rake", ">= 13.0.3"
   spec.add_development_dependency "rspec", ">= 3.10.0"
-  spec.add_development_dependency "codeclimate-test-reporter"
+  spec.add_development_dependency "codeclimate-test-reporter", ">= 1.0.7"
   spec.add_development_dependency "simplecov", ">= 0.21.2"
   spec.add_development_dependency "byebug", "11.1.3" if RUBY_VERSION >= "2.0"
 end
