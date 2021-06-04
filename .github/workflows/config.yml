@@ -34,14 +34,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.3
+
       - uses: actions/cache@v2
         with:
           path: ./vendor/bundle
           key: br-documents-cache-v1-{{ checksum "Gemfile.lock" }}
-
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7.3
 
       - run: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
