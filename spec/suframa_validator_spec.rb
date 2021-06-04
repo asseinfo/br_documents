@@ -11,25 +11,25 @@ describe SuframaValidator do
     end
   end
 
-  subject { SuframaValidator.new(attributes: "cpf").new }
+  subject { SuframaValidator.new(attributes: "suframa") }
 
-  context "when Cpf is valid" do
+  context "when SUFRAMA is valid" do
     it "doesn't add errors in model" do
-      subject.validate_each(@mock, "cpf", "01233254120")
+      subject.validate_each(@mock, "suframa", "600215105")
       expect(@mock.errors.messages).to be_empty
     end
   end
 
-  context "when Cpf is blank" do
+  context "when SUFRAMA is blank" do
     it "doesn't add errors in model" do
-      subject.validate_each(@mock, "cpf", "")
+      subject.validate_each(@mock, "suframa", "")
       expect(@mock.errors.messages).to be_empty
     end
   end
 
-  context "when Cpf is invalid" do
+  context "when SUFRAMA is invalid" do
     it "adds errors in model" do
-      subject.validate_each(@mock, "cpf", "01233254121")
+      subject.validate_each(@mock, "suframa", "01233254121")
       expect(@mock.errors.messages).to_not be_empty
     end
   end

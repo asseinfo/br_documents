@@ -1,8 +1,8 @@
 class SuframaValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if value.present?
-      cpf = BrDocuments::CnpjCpf::Cpf.new(value)
-      record.errors.add(attribute, :invalid) unless cpf.valid?
+      suframa = BrDocuments::Suframa.new(value)
+      record.errors.add(attribute, :invalid) unless suframa.valid?
     end
   end
 end

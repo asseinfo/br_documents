@@ -15,7 +15,7 @@ module BrDocuments
     def valid?
       format_regex.match(@number).present? && !sequence_of_equal_numbers? && valid_verifying_digit?
     end
-    
+
     private
 
     def weights_for_verifying_digit
