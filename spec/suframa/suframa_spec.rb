@@ -63,10 +63,46 @@ describe BrDocuments::Suframa do
     end
 
     it "is valid with correct number" do
-      ['11.1279.100', '10.1040.105', '600215105', '100698107'].each do |number|
+      ['11.1279.100', '10.1040.105', '100628109', '100698107'].each do |number|
         suframa = BrDocuments::Suframa.new(number)
 
         expect(suframa).to be_valid
+      end
+    end
+
+    context "activity sector" do
+      it "is valid when activity_sector is in 01, 02, 10, 11, 20, 60" do
+        ['11.1279.100', '10.1040.105'].each do |number|
+          suframa = BrDocuments::Suframa.new(number)
+
+          expect(suframa).to be_valid
+        end
+      end
+
+       it "is invalid when activity_sector is not in 01, 02, 10, 11, 20, 60" do
+        ['17.1279.124', '141160100'].each do |number|
+          suframa = BrDocuments::Suframa.new(number)
+
+          expect(suframa).to_not be_valid
+        end
+      end
+    end
+
+    context "administration unit" do
+      it "is valid when adm_unit is in 01, 10, 30" do
+        ['11.1279.100', '101160100'].each do |number|
+          suframa = BrDocuments::Suframa.new(number)
+
+          expect(suframa).to be_valid
+        end
+      end
+
+       it "is invalid when adm_unit is not in 01, 10, 30" do
+        ['11.1279.124', '101160160'].each do |number|
+          suframa = BrDocuments::Suframa.new(number)
+
+          expect(suframa).to_not be_valid
+        end
       end
     end
   end

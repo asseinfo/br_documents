@@ -13,7 +13,7 @@ module BrDocuments
     end
 
     def valid?
-      format_regex.match(@number).present? && !sequence_of_equal_numbers? && valid_verifying_digit?
+      format_regex.match(@number).present? && !sequence_of_equal_numbers? && valid_verifying_digit? && valid_adm_unit?
     end
 
     private
@@ -29,8 +29,19 @@ module BrDocuments
       number_without_mask[8].eql? verifying_digit.to_s
     end
 
+    def valid_activity_sector?
+      number = number_without_mask[0] + number_without_mask[1]
+
+      ['01', '02', '10', '11', '20', '60'].include?(number)
+    end
+
+    def valid_adm_unit?
+      number = number_without_mask[6] + number_without_mask[7]
+
+      ['01', '10', '30'].include?(number)
+    end
+
     def format_regex
-      # TODO: verificar se pode chegar alguma inscrição com 8 dígitos
       /^(\d{2}\.\d{4}\.\d{3})$|^(\d{9})$/
     end
 
