@@ -1,4 +1,4 @@
-require_relative "pattern1"
+require_relative 'pattern1'
 
 module BrDocuments
   module IE
@@ -14,13 +14,13 @@ module BrDocuments
       private
 
       def generate_zeros(number)
-        just_numbers = number.gsub(/[\.\/-]/, "")
-        zeros = ("0" * 11).slice(just_numbers.length, 11)
-        yield "#{zeros}" if block_given?
+        just_numbers = number.gsub(/[\.\/-]/, '')
+        zeros = ('0' * 11).slice(just_numbers.length, 11)
+        yield zeros.to_s if block_given?
       end
 
       def format_ie(number)
-        number.sub(/(\d{10})(\d{1})/, "\\1-\\2")
+        number.sub(/(\d{10})(\d{1})/, '\\1-\\2')
       end
     end
   end

@@ -1,4 +1,4 @@
-require_relative "../commons/mod11"
+require_relative '../commons/mod11'
 
 module BrDocuments
   module CnpjCpf
@@ -14,7 +14,7 @@ module BrDocuments
       end
 
       def formatted
-        valid? ? format_number : ""
+        valid? ? format_number : ''
       end
 
       private
@@ -24,7 +24,7 @@ module BrDocuments
       end
 
       def sequence_of_equal_numbers?
-        number_without_mask.split("").uniq.length == 1
+        number_without_mask.split('').uniq.length == 1
       end
 
       def valid_digital_check?
@@ -36,7 +36,7 @@ module BrDocuments
       end
 
       def number_without_mask
-        @number.gsub(/[\.\/-]/, "")
+        @number.gsub(/[\.\/-]/, '')
       end
     end
   end

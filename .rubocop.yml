@@ -27,81 +27,8 @@ Metrics/BlockLength:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 85
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
 Style/FrozenStringLiteralComment:
-  Enabled: false
-
-# Offense count: 3
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'lib/br_documents/cnpj_validator.rb'
-    - 'lib/br_documents/cpf_validator.rb'
-    - 'lib/br_documents/gtin_validator.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AllowIfModifier.
-Style/IfInsideElse:
-  Exclude:
-    - 'lib/br_documents/ie/ap.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/MultilineIfModifier:
-  Exclude:
-    - 'lib/br_documents/ie_validator.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
-Style/MutableConstant:
-  Exclude:
-    - 'lib/br_documents/version.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: both, prefix, postfix
-Style/NegatedIf:
-  Exclude:
-    - 'lib/br_documents/cnpj_validator.rb'
-    - 'lib/br_documents/cpf_validator.rb'
-    - 'lib/br_documents/gtin_validator.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/Not:
-  Exclude:
-    - 'lib/br_documents/cnpj_validator.rb'
-    - 'lib/br_documents/cpf_validator.rb'
-    - 'lib/br_documents/gtin_validator.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: Strict.
-Style/NumericLiterals:
-  MinDigits: 8
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IgnoredMethods.
-# SupportedStyles: predicate, comparison
-Style/NumericPredicate:
-  Exclude:
-    - 'spec/**/*'
-    - 'lib/br_documents/ie/ba.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/RedundantInterpolation:
-  Exclude:
-    - 'lib/br_documents/ie/factory.rb'
-    - 'lib/br_documents/ie/mt.rb'
+  EnforcedStyle: never # default: always
 
 # Offense count: 39
 # Cop supports --auto-correct.
@@ -131,38 +58,11 @@ Style/RegexpLiteral:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/SelfAssignment:
-  Exclude:
-    - 'lib/br_documents/ie/mg.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: use_perl_names, use_english_names
 Style/SpecialGlobalVars:
   Exclude:
     - 'br_documents.gemspec'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/StringConcatenation:
-  Exclude:
-    - 'lib/br_documents.rb'
-    - 'lib/br_documents/ie/mg.rb'
-    - 'spec/spec_helper.rb'
-
-# Offense count: 952
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/WhileUntilModifier:
-  Exclude:
-    - 'lib/br_documents/ie/mg.rb'
 
 # Offense count: 48
 # Cop supports --auto-correct.

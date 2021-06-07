@@ -1,5 +1,5 @@
-require_relative "base"
-require_relative "../commons/mod11"
+require_relative 'base'
+require_relative '../commons/mod11'
 
 module BrDocuments
   module IE
@@ -12,7 +12,7 @@ module BrDocuments
         @weight2 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
       end
 
-      private
+      protected
 
       def valid_format?
         regex = @mask
@@ -20,7 +20,7 @@ module BrDocuments
       end
 
       def valid_digital_check?
-        @number.gsub!(/[\.\/-]/, "")
+        @number.gsub!(/[\.\/-]/, '')
 
         digital_check1 = generate_digital_check(@number, @weight1)
         digital_check2 = generate_digital_check(@number, @weight2)

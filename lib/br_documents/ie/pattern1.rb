@@ -1,5 +1,5 @@
-require_relative "base"
-require_relative "../commons/mod11"
+require_relative 'base'
+require_relative '../commons/mod11'
 
 module BrDocuments
   module IE
@@ -12,7 +12,7 @@ module BrDocuments
         @weight = [9, 8, 7, 6, 5, 4, 3, 2]
       end
 
-      private
+      protected
 
       def valid_format?
         regex = @mask
@@ -27,6 +27,8 @@ module BrDocuments
         check_digit_valid
       end
 
+      private
+
       def check_digit
         only_numbers[-1]
       end
@@ -36,7 +38,7 @@ module BrDocuments
       end
 
       def only_numbers
-        @number.gsub(/[\.\/-]/, "")
+        @number.gsub(/[\.\/-]/, '')
       end
     end
   end

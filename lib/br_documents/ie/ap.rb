@@ -1,12 +1,12 @@
-require_relative "base"
-require_relative "../commons/mod11"
+require_relative 'base'
+require_relative '../commons/mod11'
 
 module BrDocuments
   module IE
     class AP < Base
       include Commons::Mod11
 
-      private
+      protected
 
       def format_ie(number)
         number
@@ -23,16 +23,18 @@ module BrDocuments
         @number[-1] == generate_digital_check(@number, weight).to_s
       end
 
+      private
+
       # rubocop:disable Metrics/MethodLength
       def detect_range_digits
         case @number[0, 8].to_i
-        when 3000001..3017000
+        when 3_000_001..3_017_000
           @p = 5
           @d = 0
-        when 3017001..3019022
+        when 3_017_001..3_019_022
           @p = 9
           @d = 1
-        when 3019023..
+        when 3_019_023..
           @p = 0
           @d = 0
         end

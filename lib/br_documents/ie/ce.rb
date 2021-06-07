@@ -1,4 +1,4 @@
-require_relative "pattern1"
+require_relative 'pattern1'
 
 module BrDocuments
   module IE
@@ -6,7 +6,7 @@ module BrDocuments
       private
 
       def format_ie(number)
-        number.sub(/(\d{8})(\d{1})/, "\\1-\\2")
+        number.sub(/(\d{8})(\d{1})/, '\\1-\\2')
       end
     end
   end

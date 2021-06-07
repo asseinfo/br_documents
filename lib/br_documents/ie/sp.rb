@@ -1,18 +1,18 @@
-require_relative "base"
-require_relative "../commons/mod11"
+require_relative 'base'
+require_relative '../commons/mod11'
 
 module BrDocuments
   module IE
     class SP < Base
       include Commons::Mod11
 
-      private
+      protected
 
       def format_ie(number)
-        if number.gsub(/(\-)|(\.)|(\/)/, "").length == 13
-          number.sub(/(\w{1})(\d{8})(\d{1})(\d{3})/, "\\1-\\2.\\3/\\4")
+        if number.gsub(/(\-)|(\.)|(\/)/, '').length == 13
+          number.sub(/(\w{1})(\d{8})(\d{1})(\d{3})/, '\\1-\\2.\\3/\\4')
         else
-          number.sub(/(\d{3})(\d{3})(\d{3})(\d{3})/, "\\1.\\2.\\3.\\4")
+          number.sub(/(\d{3})(\d{3})(\d{3})(\d{3})/, '\\1.\\2.\\3.\\4')
         end
       end
 
@@ -22,15 +22,17 @@ module BrDocuments
       end
 
       def valid_digital_check?
-        if @number[0].eql? "P"
+        if @number[0].eql? 'P'
           valid_rural_producer_digital_check?
         else
           valid_standard_digital_check?
         end
       end
 
+      private
+
       def valid_standard_digital_check?
-        @number.gsub!(/[\.\/P-]/, "")
+        @number.gsub!(/[\.\/P-]/, '')
 
         weight1 = [1, 3, 4, 5, 6, 7, 8, 10]
         weight2 = [3, 2, 10, 9, 8, 7, 6, 5, 4, 3, 2]
@@ -42,7 +44,7 @@ module BrDocuments
       end
 
       def valid_rural_producer_digital_check?
-        @number.gsub!(/[\.\/P-]/, "")
+        @number.gsub!(/[\.\/P-]/, '')
         weight9 = [1, 3, 4, 5, 6, 7, 8, 10]
         @number[8] == generate_digital_check(weight9)
       end

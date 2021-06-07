@@ -1,24 +1,35 @@
-require_relative "base"
-require_relative "../commons/mod11"
+require_relative 'base'
+require_relative '../commons/mod11'
 
 module BrDocuments
   module IE
     class RN < Base
       include Commons::Mod11
 
-      private
+      protected
 
       def format_ie(number)
-        if number.gsub(/(\.)|(\-)/, "").length == 9
-          number.sub(/(\d{2})(\d{3})(\d{3})(\d{1})/, "\\1.\\2.\\3-\\4")
+        if number.gsub(/(\.)|(\-)/, '').length == 9
+          number.sub(/(\d{2})(\d{3})(\d{3})(\d{1})/, '\\1.\\2.\\3-\\4')
         else
-          number.sub(/(\d{2})(\d{1})(\d{3})(\d{3})(\d{1})/, "\\1.\\2.\\3.\\4-\\5")
+          number.sub(/(\d{2})(\d{1})(\d{3})(\d{3})(\d{1})/, '\\1.\\2.\\3.\\4-\\5')
         end
       end
 
       def valid_format?
         valid_old_format or valid_new_format
       end
+
+      def valid_digital_check?
+        @number.gsub!(/[\.\/-]/, '')
+
+        weight = []
+        @number.length.downto(2).each { |w| weight << w }
+
+        @number[-1].eql? generate_digital_check(@number, weight).to_s
+      end
+
+      private
 
       def valid_old_format
         regex = /^(\d{2}\.\d{3}\.\d{3}\-\d{1})$|^(\d{9})$/
@@ -28,15 +39,6 @@ module BrDocuments
       def valid_new_format
         regex = /^(\d{2}\.\d{1}\.\d{3}\.\d{3}\-\d{1})$|^(\d{10})$/
         regex.match(@number).present?
-      end
-
-      def valid_digital_check?
-        @number.gsub!(/[\.\/-]/, "")
-
-        weight = []
-        @number.length.downto(2).each { |w| weight << w }
-
-        @number[-1].eql? generate_digital_check(@number, weight).to_s
       end
 
       def generate_digital_check(values, weights)

@@ -1,24 +1,30 @@
-require_relative "base"
-require_relative "../commons/mod14"
+require_relative 'base'
+require_relative '../commons/mod14'
 
 module BrDocuments
   module IE
     class RO < Base
       include Commons::Mod14
 
-      private
+      protected
 
       def format_ie(number)
-        if number.gsub(/(\.)|(\-)/, "").length == 9
-          number.sub(/(\d{3})(\d{5})(\d{1})/, "\\1.\\2-\\3")
+        if number.gsub(/(\.)|(\-)/, '').length == 9
+          number.sub(/(\d{3})(\d{5})(\d{1})/, '\\1.\\2-\\3')
         else
-          number.sub(/(\d{13})(\d{1})/, "\\1-\\2")
+          number.sub(/(\d{13})(\d{1})/, '\\1-\\2')
         end
       end
 
       def valid_format?
         valid_old_format or valid_new_format
       end
+
+      def valid_digital_check?
+        valid_old_digital_check or valid_new_digital_check
+      end
+
+      private
 
       def valid_old_format
         regex = /^(\d{3}\.\d{5}\-\d{1})$|^(\d{9})$/
@@ -28,10 +34,6 @@ module BrDocuments
       def valid_new_format
         regex = /^(\d{13}\-\d{1})$|^(\d{14})$/
         regex.match(@number).present?
-      end
-
-      def valid_digital_check?
-        valid_old_digital_check or valid_new_digital_check
       end
 
       def valid_old_digital_check
@@ -47,7 +49,7 @@ module BrDocuments
       end
 
       def remove_mask!
-        @number.gsub!(/[\.\/-]/, "")
+        @number.gsub!(/[\.\/-]/, '')
       end
     end
   end

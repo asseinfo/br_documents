@@ -1,11 +1,11 @@
-require_relative "pattern1"
-require_relative "pattern2"
+require_relative 'pattern1'
+require_relative 'pattern2'
 
 module BrDocuments
   module IE
     class PE
       def initialize(number)
-        @validator = if number.gsub(/[\.\/-]/, "").length <= 9
+        @validator = if number.gsub(/[\.\/-]/, '').length <= 9
                        PE9.new(number)
                      else
                        PE14.new(number)
@@ -30,7 +30,7 @@ module BrDocuments
         private
 
         def format_ie(number)
-          number.sub(/(\d{2})(\d{1})(\d{3})(\d{7})(\d{1})/, "\\1.\\2.\\3.\\4-\\5")
+          number.sub(/(\d{2})(\d{1})(\d{3})(\d{7})(\d{1})/, '\\1.\\2.\\3.\\4-\\5')
         end
       end
       private_constant :PE14
@@ -46,7 +46,7 @@ module BrDocuments
         private
 
         def format_ie(number)
-          number.sub(/(\d{7})(\d{2})/, "\\1-\\2")
+          number.sub(/(\d{7})(\d{2})/, '\\1-\\2')
         end
       end
 
