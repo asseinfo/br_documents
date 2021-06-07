@@ -12,9 +12,13 @@ module BrDocuments
       valid? ? format_number : ''
     end
 
-    def valid?
-      format_regex.match(@number).present? && !sequence_of_equal_numbers? && valid_verifying_digit? && valid_adm_unit?
-    end
+  def valid?
+    format_regex.match(@number).present? &&
+      !sequence_of_equal_numbers? &&
+      valid_verifying_digit? &&
+      valid_adm_unit? &&
+      valid_activity_sector?
+  end
 
     private
 
