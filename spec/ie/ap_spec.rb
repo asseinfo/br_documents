@@ -25,7 +25,7 @@ RSpec.describe BrDocuments::IE::AP do
     end
 
     it 'is valid with valid number' do
-      ['030123459', '030183458', '030213452'].each do |number|
+      ['030123459', '030183458', '030213452', '030213460'].each do |number|
         ie = described_class.new(number)
         expect(ie).to be_valid
       end

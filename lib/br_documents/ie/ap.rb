@@ -27,14 +27,15 @@ module BrDocuments
 
       # rubocop:disable Metrics/MethodLength
       def detect_range_digits
-        case @number[0, 8].to_i
-        when 3_000_001..3_017_000
+        number = @number[0, 8].to_i
+
+        if number >= 3_000_001 && number <= 3_017_000
           @p = 5
           @d = 0
-        when 3_017_001..3_019_022
+        elsif number >= 3_017_001 && number <= 3_019_022
           @p = 9
           @d = 1
-        when 3_019_023..
+        elsif number >= 3_019_023
           @p = 0
           @d = 0
         end
