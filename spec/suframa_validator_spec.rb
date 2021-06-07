@@ -1,17 +1,17 @@
 require "spec_helper"
 
 describe SuframaValidator do
-  let(:mock) { double("model") }
-
-  before do
+  before(:each) do
+    @validator = SuframaValidator.new(attributes: "suframa")
+    @mock = double("model")
     allow(@mock).to receive(:errors).and_return([])
     allow(@mock.errors).to receive(:messages).and_return({})
-    allow(@mock.errors).to receive(:add) do | attribute, error |
+    allow(@mock.errors).to receive(:add) do |attribute, error|
        @mock.errors.messages[attribute] = [error]
     end
   end
 
-  subject { SuframaValidator.new(attributes: "suframa") }
+  subject { @validator }
 
   context "when SUFRAMA is valid" do
     it "doesn't add errors in model" do
