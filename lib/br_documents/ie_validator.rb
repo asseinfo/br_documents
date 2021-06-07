@@ -12,8 +12,7 @@ class IeValidator < ActiveModel::EachValidator
   end
 
   def attribute_uf_was_configured_at_validator?(record)
-    record.errors.add(:base,
-      I18n.t("validator.ie.uf.no_configured")) unless options[:uf].present?
+    record.errors.add(:base, I18n.t("validator.ie.uf.no_configured")) unless options[:uf].present?
 
     options[:uf].present?
   end
@@ -22,8 +21,8 @@ class IeValidator < ActiveModel::EachValidator
     begin
       uf = read_uf(record)
     rescue NoMethodError
-      record.errors.add(:base, I18n.t("validator.ie.uf.no_present",
-        uf: options[:uf])
+      record.errors.add(
+        :base, I18n.t("validator.ie.uf.no_present", uf: options[:uf])
       )
     end
 
@@ -33,8 +32,8 @@ class IeValidator < ActiveModel::EachValidator
   def ie_valid?(record, attribute, value)
     begin
       record.errors.add(attribute, :invalid) unless number_valid?(record, value)
-    rescue ArgumentError => ex
-      record.errors.add(attribute, ex.message)
+    rescue ArgumentError => e
+      record.errors.add(attribute, e.message)
     end
     record.errors.messages.empty?
   end
@@ -47,7 +46,7 @@ class IeValidator < ActiveModel::EachValidator
 
   def read_uf(record)
     attribute = record
-    options[:uf].split("#").each do | field |
+    options[:uf].split("#").each do |field|
       attribute = attribute.send(field)
     end
     attribute

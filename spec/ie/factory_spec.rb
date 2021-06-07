@@ -191,12 +191,11 @@ describe BrDocuments::IE::Factory do
       end
     end
 
-
     context "when uf is invalid" do
       it "is returns an error" do
-        expect{
-            BrDocuments::IE::Factory.create("", "")
-          }.to raise_error(ArgumentError, t("validator.ie.uf.invalid"))
+        expect do
+          BrDocuments::IE::Factory.create("", "")
+        end.to raise_error(ArgumentError, t("validator.ie.uf.invalid"))
       end
     end
   end

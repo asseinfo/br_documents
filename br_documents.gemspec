@@ -1,4 +1,5 @@
 # coding: utf-8
+
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "br_documents/version"
@@ -22,9 +23,13 @@ Gem::Specification.new do |spec|
   spec.add_dependency "i18n", ">= 0.6.5"
 
   spec.add_development_dependency "bundler", ">= 1.3"
+  spec.add_development_dependency "byebug", "11.1.3" if RUBY_VERSION >= "2.0"
+  spec.add_development_dependency "codeclimate-test-reporter"
   spec.add_development_dependency "rake", ">= 13.0.1"
   spec.add_development_dependency "rspec", ">= 3.10.0"
-  spec.add_development_dependency "codeclimate-test-reporter"
+  spec.add_development_dependency 'rubocop', '~> 1.15.0'
+  spec.add_development_dependency 'rubocop-performance', '~> 1.11.3'
+  spec.add_development_dependency 'rubocop-rails', '~> 2.10.1'
+  spec.add_development_dependency 'rubocop-rspec', '~> 2.3.0'
   spec.add_development_dependency "simplecov", ">= 0.17.0"
-  spec.add_development_dependency "byebug", "11.1.3" if RUBY_VERSION >= "2.0"
 end
