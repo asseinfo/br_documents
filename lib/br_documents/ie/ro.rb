@@ -7,6 +7,7 @@ module BrDocuments
       include Commons::Mod14
 
       private
+
       def format_ie(number)
         if number.gsub(/(\.)|(\-)/, "").length == 9
           number.sub(/(\d{3})(\d{5})(\d{1})/, "\\1.\\2-\\3")

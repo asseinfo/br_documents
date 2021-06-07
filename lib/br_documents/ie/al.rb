@@ -9,6 +9,7 @@ module BrDocuments
       end
 
       private
+
       def format_ie(number)
         number
       end

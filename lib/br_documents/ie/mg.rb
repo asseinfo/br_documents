@@ -7,6 +7,7 @@ module BrDocuments
       include Commons::Mod11
 
       private
+
       def format_ie(number)
         number.sub(/(\d{3})(\d{3})(\d{3})(\d{4})/, "\\1.\\2.\\3/\\4")
       end
@@ -34,11 +35,11 @@ module BrDocuments
         sum = 0
         weights.each_index do |i|
           number = weights[i] * values[i].to_i
-          if number < 10
-            sum += number
-          else
-            sum += number.to_s[0].to_i + number.to_s[1].to_i
-          end
+          sum += if number < 10
+                   number
+                 else
+                   number.to_s[0].to_i + number.to_s[1].to_i
+                 end
         end
         next_dozen(sum) - sum
       end

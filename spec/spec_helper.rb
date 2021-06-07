@@ -6,7 +6,7 @@ Bundler.require(:default, :development)
 
 require "br_documents"
 
-Dir[File.dirname(__FILE__) + "/support/*.rb"].each { |f| require f }
+Dir[File.dirname(__FILE__) + "/support/*.rb"].sort.each { |f| require f }
 
 I18n.default_locale = "pt-BR"
 

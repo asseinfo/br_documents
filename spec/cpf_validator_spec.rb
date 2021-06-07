@@ -6,8 +6,8 @@ describe CpfValidator do
     @mock = double("model")
     allow(@mock).to receive(:errors).and_return([])
     allow(@mock.errors).to receive(:messages).and_return({})
-    allow(@mock.errors).to receive(:add) do | attribute, error |
-       @mock.errors.messages[attribute] = [error]
+    allow(@mock.errors).to receive(:add) do |attribute, error|
+      @mock.errors.messages[attribute] = [error]
     end
   end
 

@@ -7,6 +7,7 @@ module BrDocuments
       include Commons::Mod11
 
       private
+
       def format_ie(number)
         if number.gsub(/-/, "").length == 8
           number.sub(/(\d{6})(\d{2})/, "\\1-\\2")
@@ -20,9 +21,9 @@ module BrDocuments
       end
 
       def valid_9_digits_format
-        regex_mask_1 = /^(\d{7}\-\d{2})$|^(\d{9})$/
-        regex_mask_2 = /^(\d{3}\.\d{3}\.\d{3})$|^(\d{9})$/
-        regex_mask_1.match(@number).present? || regex_mask_2.match(@number).present?
+        regex_mask1 = /^(\d{7}\-\d{2})$|^(\d{9})$/
+        regex_mask2 = /^(\d{3}\.\d{3}\.\d{3})$|^(\d{9})$/
+        regex_mask1.match(@number).present? || regex_mask2.match(@number).present?
       end
 
       def valid_8_digits_format

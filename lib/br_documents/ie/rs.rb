@@ -10,6 +10,7 @@ module BrDocuments
       end
 
       private
+
       def format_ie(number)
         number.sub(/(\d{3})(\d{7})/, "\\1/\\2")
       end

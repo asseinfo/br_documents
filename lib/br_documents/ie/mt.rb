@@ -12,6 +12,7 @@ module BrDocuments
       end
 
       private
+
       def generate_zeros(number)
         just_numbers = number.gsub(/[\.\/-]/, "")
         zeros = ("0" * 11).slice(just_numbers.length, 11)

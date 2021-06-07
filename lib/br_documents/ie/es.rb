@@ -4,6 +4,7 @@ module BrDocuments
   module IE
     class ES < Pattern1
       private
+
       def format_ie(number)
         number
       end

@@ -7,6 +7,7 @@ module BrDocuments
       include Commons::Mod11
 
       private
+
       def format_ie(number)
         if number.gsub(/(\.)|(\-)/, "").length == 9
           number.sub(/(\d{2})(\d{3})(\d{3})(\d{1})/, "\\1.\\2.\\3-\\4")
@@ -33,7 +34,7 @@ module BrDocuments
         @number.gsub!(/[\.\/-]/, "")
 
         weight = []
-        @number.length.downto(2).each {|w| weight << w }
+        @number.length.downto(2).each { |w| weight << w }
 
         @number[-1].eql? generate_digital_check(@number, weight).to_s
       end

@@ -13,6 +13,7 @@ module BrDocuments
       end
 
       private
+
       def valid_format?
         regex = @mask
         regex.match(@number).present?

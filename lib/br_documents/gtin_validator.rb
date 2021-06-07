@@ -1,4 +1,4 @@
-class GtinValidator  < ActiveModel::EachValidator
+class GtinValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if value.present?
       gtin = BrDocuments::Gtin.new(value)

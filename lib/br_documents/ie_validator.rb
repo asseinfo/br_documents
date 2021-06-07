@@ -7,6 +7,7 @@ class IeValidator < ActiveModel::EachValidator
   end
 
   private
+
   def ie_present?(value)
     value.present?
   end

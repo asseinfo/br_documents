@@ -6,7 +6,7 @@ describe GtinValidator do
   before do
     allow(record).to receive(:errors).and_return([])
     allow(record.errors).to receive(:messages).and_return({})
-    allow(record.errors).to receive(:add) do | attribute, error |
+    allow(record.errors).to receive(:add) do |attribute, error|
       record.errors.messages[attribute] = [error]
     end
   end

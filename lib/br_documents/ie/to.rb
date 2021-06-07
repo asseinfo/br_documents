@@ -15,6 +15,7 @@ module BrDocuments
       end
 
       private
+
       def format_ie(number)
         if number.gsub(/(\.)|(\-)/, "").length == 9
           number.sub(/(\d{2})(\d{6})(\d{1})/, "\\1.\\2-\\3")
