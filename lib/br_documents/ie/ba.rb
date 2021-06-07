@@ -61,9 +61,9 @@ module BrDocuments
 
       def digital_check_generator(number, weight)
         if use_digital_check_mod10
-          generate_digital_check_mod10(number, weight)
+          generate_check_digit_mod10(number, weight)
         else
-          generate_digital_check(number, weight)
+          generate_check_digit(number, weight)
         end
       end
 
@@ -80,7 +80,7 @@ module BrDocuments
         end
       end
 
-      def generate_digital_check_mod10(values, weights)
+      def generate_check_digit_mod10(values, weights)
         sum = reduce_weights(values, weights)
         mod = sum % 10
         mod == 0 ? 0 : (10 - mod)

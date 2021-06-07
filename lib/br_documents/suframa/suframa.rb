@@ -16,7 +16,7 @@ class BrDocuments::Suframa
     !sequence_of_equal_numbers? &&
     valid_check_digit? &&
     valid_activity_sector? &&
-    valid_adm_unit?
+    valid_administrative_unit?
   end
 
   private
@@ -36,20 +36,20 @@ class BrDocuments::Suframa
   def valid_check_digit?
     weights = [9, 8, 7, 6, 5, 4, 3, 2]
 
-    check_digit = generate_digital_check(number_without_mask, weights)
+    check_digit = generate_check_digit(number_without_mask, weights)
     number_without_mask[8] == check_digit.to_s
   end
 
   def valid_activity_sector?
-    number = number_without_mask[0] + number_without_mask[1]
+    activity_sector = number_without_mask[0] + number_without_mask[1]
 
-    ['01', '02', '10', '11', '20', '60'].include?(number)
+    ['01', '02', '10', '11', '20', '60'].include?(activity_sector)
   end
 
-  def valid_adm_unit?
-    number = number_without_mask[6] + number_without_mask[7]
+  def valid_administrative_unit?
+    administrative_unit = number_without_mask[6] + number_without_mask[7]
 
-    ['01', '10', '30'].include?(number)
+    ['01', '10', '30'].include?(administrative_unit)
   end
 
   def format_number

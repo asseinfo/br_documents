@@ -35,10 +35,10 @@ module BrDocuments
         weight = []
         @number.length.downto(2).each {|w| weight << w }
 
-        @number[-1].eql? generate_digital_check(@number, weight).to_s
+        @number[-1].eql? generate_check_digit(@number, weight).to_s
       end
 
-      def generate_digital_check(values, weights)
+      def generate_check_digit(values, weights)
         sum = reduce_weights(values, weights)
         mod = sum * 10 % 11
         mod == 10 ? 0 : mod

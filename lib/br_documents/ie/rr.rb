@@ -14,7 +14,7 @@ module BrDocuments
         number.sub(/(\d{8})(\d{1})/, "\\1-\\2")
       end
 
-      def generate_digital_check(values, weights)
+      def generate_check_digit(values, weights)
         sum = reduce_weights(values, weights)
         sum % 9
       end

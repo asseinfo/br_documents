@@ -19,7 +19,7 @@ module BrDocuments
       def valid_digital_check?
         weight = [9, 8, 7, 6, 5, 4, 3, 2]
         detect_range_digits
-        @number[-1].eql? generate_digital_check(@number, weight).to_s
+        @number[-1].eql? generate_check_digit(@number, weight).to_s
       end
 
       def detect_range_digits
@@ -38,7 +38,7 @@ module BrDocuments
         end
       end
 
-      def generate_digital_check(values, weights)
+      def generate_check_digit(values, weights)
         sum = reduce_weights(values, weights)
         sum += @p
         mod = sum % 11
