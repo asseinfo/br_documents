@@ -6,7 +6,7 @@ module BrDocuments
       end
 
       def valid?
-        valid_format? and valid_digital_check?
+        valid_format? and valid_check_digit?
       end
 
       def formatted

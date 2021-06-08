@@ -20,7 +20,7 @@ module BrDocuments
         valid_8_digits_format || valid_9_digits_format
       end
 
-      def valid_digital_check?
+      def valid_check_digit?
         @number.gsub!(/[\.\/-]/, '')
 
         weight1 = make_weight(total_size)
@@ -30,7 +30,7 @@ module BrDocuments
         number = "#{@number[0, body_size]}#{digital_check2}"
         digital_check1 = digital_check_generator(number, weight1)
 
-        @number[-2, 2].eql? "#{digital_check1}#{digital_check2}"
+        @number[-2, 2] == "#{digital_check1}#{digital_check2}"
       end
 
       private
@@ -64,9 +64,9 @@ module BrDocuments
 
       def digital_check_generator(number, weight)
         if use_digital_check_mod10
-          generate_digital_check_mod10(number, weight)
+          generate_check_digit_mod10(number, weight)
         else
-          generate_digital_check(number, weight)
+          generate_check_digit(number, weight)
         end
       end
 
@@ -83,7 +83,7 @@ module BrDocuments
         end
       end
 
-      def generate_digital_check_mod10(values, weights)
+      def generate_check_digit_mod10(values, weights)
         sum = reduce_weights(values, weights)
         mod = sum % 10
         mod.zero? ? 0 : (10 - mod)

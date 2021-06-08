@@ -10,7 +10,7 @@ module BrDocuments
       end
 
       def valid?
-        valid_format? && !sequence_of_equal_numbers? && valid_digital_check?
+        valid_format? && !sequence_of_equal_numbers? && valid_check_digit?
       end
 
       def formatted
@@ -27,12 +27,12 @@ module BrDocuments
         number_without_mask.split('').uniq.length == 1
       end
 
-      def valid_digital_check?
+      def valid_check_digit?
         weight1, weight2 = weights_for_digital_check
 
-        digital_check1 = generate_digital_check(number_without_mask, weight1)
-        digital_check2 = generate_digital_check(number_without_mask, weight2)
-        @number[-2, 2].eql? "#{digital_check1}#{digital_check2}"
+        digital_check1 = generate_check_digit(number_without_mask, weight1)
+        digital_check2 = generate_check_digit(number_without_mask, weight2)
+        @number[-2, 2] == "#{digital_check1}#{digital_check2}"
       end
 
       def number_without_mask

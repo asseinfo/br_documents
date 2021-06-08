@@ -19,13 +19,13 @@ module BrDocuments
         regex.match(@number).present?
       end
 
-      def valid_digital_check?
+      def valid_check_digit?
         @number.gsub!(/[\.\/-]/, '')
 
-        digital_check1 = generate_digital_check(@number, @weight1)
-        digital_check2 = generate_digital_check(@number, @weight2)
+        digital_check1 = generate_check_digit(@number, @weight1)
+        digital_check2 = generate_check_digit(@number, @weight2)
 
-        @number[-2, 2].eql? "#{digital_check1}#{digital_check2}"
+        @number[-2, 2] == "#{digital_check1}#{digital_check2}"
       end
     end
   end
