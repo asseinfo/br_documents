@@ -17,9 +17,6 @@ Gemspec/RubyVersionGlobalsUsage:
 Metrics/AbcSize:
   Max: 20
 
-# Offense count: 36
-# Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
-# IgnoredMethods: refine
 Metrics/BlockLength:
   Exclude:
    - 'spec/**/*.rb'
@@ -64,9 +61,5 @@ Style/SpecialGlobalVars:
   Exclude:
     - 'br_documents.gemspec'
 
-# Offense count: 48
-# Cop supports --auto-correct.
-# Configuration parameters: MinSize, WordRegex.
-# SupportedStyles: percent, brackets
 Style/WordArray:
   EnforcedStyle: brackets

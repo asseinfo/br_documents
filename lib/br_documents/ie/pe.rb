@@ -5,11 +5,7 @@ module BrDocuments
   module IE
     class PE
       def initialize(number)
-        @validator = if number.gsub(/[\.\/-]/, '').length <= 9
-                       PE9.new(number)
-                     else
-                       PE14.new(number)
-                     end
+        @validator = number.gsub(/[\.\/-]/, '').length <= 9 ? PE9.new(number) : PE14.new(number)
       end
 
       def valid?

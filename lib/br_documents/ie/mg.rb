@@ -37,11 +37,7 @@ module BrDocuments
         sum = 0
         weights.each_index do |i|
           number = weights[i] * values[i].to_i
-          sum += if number < 10
-                   number
-                 else
-                   number.to_s[0].to_i + number.to_s[1].to_i
-                 end
+          sum += number < 10 ? number : number.to_s[0].to_i + number.to_s[1].to_i
         end
         next_dozen(sum) - sum
       end
