@@ -1,5 +1,5 @@
 require_relative 'base'
-# require_relative '../commons/mod11'
+require_relative '../commons/mod11'
 
 class BrDocuments::IE::Pattern1 < BrDocuments::IE::Base
   include BrDocuments::Commons::Mod11

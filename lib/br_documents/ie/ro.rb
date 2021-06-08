@@ -2,7 +2,7 @@ require_relative 'base'
 require_relative '../commons/mod14'
 
 class BrDocuments::IE::RO < BrDocuments::IE::Base
-  include Commons::Mod14
+  include BrDocuments::Commons::Mod14
 
   protected
 

@@ -1,7 +1,7 @@
 require_relative 'document'
 
 class BrDocuments::CnpjCpf::Cnpj
-  include Document
+  include BrDocuments::CnpjCpf::Document
 
   private
 

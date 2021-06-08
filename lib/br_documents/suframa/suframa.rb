@@ -1,7 +1,7 @@
 require_relative '../commons/mod11'
 
 class BrDocuments::Suframa
-  include BrDocuments::BrDocuments::Commons::Mod11
+  include BrDocuments::Commons::Mod11
 
   def initialize(number)
     @number = number
