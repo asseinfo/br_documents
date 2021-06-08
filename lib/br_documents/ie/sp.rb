@@ -21,7 +21,7 @@ module BrDocuments
         regex.match(@number).present?
       end
 
-      def valid_digital_check?
+      def valid_check_digit?
         if @number[0].eql? 'P'
           valid_rural_producer_digital_check?
         else

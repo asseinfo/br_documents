@@ -17,7 +17,7 @@ module BrDocuments
         regex.match(@number).present?
       end
 
-      def valid_digital_check?
+      def valid_check_digit?
         @number.gsub!(/[\.\/-]/, '')
 
         number1 = "#{@number[0, 3]}0#{@number[3..10]}"

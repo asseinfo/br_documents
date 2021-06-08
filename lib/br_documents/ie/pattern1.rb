@@ -19,7 +19,7 @@ module BrDocuments
         regex.match(@number).present?
       end
 
-      def valid_digital_check?
+      def valid_check_digit?
         calculated_check_digit = generate_check_digit(only_numbers, @weight).to_s
         check_digit_valid = check_digit.eql? calculated_check_digit
         remove_mask_of_number if check_digit_valid

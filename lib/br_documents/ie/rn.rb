@@ -26,7 +26,7 @@ module BrDocuments
         weight = []
         @number.length.downto(2).each { |w| weight << w }
 
-        @number[-1].eql? generate_digital_check(@number, weight).to_s
+        @number[-1] == generate_check_digit(@number, weight).to_s
       end
 
       private

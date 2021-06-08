@@ -1,5 +1,6 @@
-require_relative "../commons/mod11"
+require_relative '../commons/mod11'
 
+# rubocop:disable Style/ClassAndModuleChildren
 class BrDocuments::Suframa
   include BrDocuments::Commons::Mod11
 
@@ -13,10 +14,10 @@ class BrDocuments::Suframa
 
   def valid?
     valid_pattern? &&
-    !sequence_of_equal_numbers? &&
-    valid_check_digit? &&
-    valid_activity_sector? &&
-    valid_administrative_unit?
+      !sequence_of_equal_numbers? &&
+      valid_check_digit? &&
+      valid_activity_sector? &&
+      valid_administrative_unit?
   end
 
   private
@@ -26,11 +27,11 @@ class BrDocuments::Suframa
   end
 
   def sequence_of_equal_numbers?
-    number_without_mask.split("").uniq.length == 1
+    number_without_mask.split('').uniq.length == 1
   end
 
   def number_without_mask
-    @number_without_mask ||= @number.gsub('.', "")
+    @number_without_mask ||= @number.gsub('.', '')
   end
 
   def valid_check_digit?
@@ -53,6 +54,7 @@ class BrDocuments::Suframa
   end
 
   def format_number
-    @number.sub(/(\d{2})(\d{4})(\d{3})/, "\\1.\\2.\\3")
+    @number.sub(/(\d{2})(\d{4})(\d{3})/, '\\1.\\2.\\3')
   end
 end
+# rubocop:enable Style/ClassAndModuleChildren

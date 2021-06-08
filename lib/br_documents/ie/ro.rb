@@ -20,7 +20,7 @@ module BrDocuments
         valid_old_format or valid_new_format
       end
 
-      def valid_digital_check?
+      def valid_check_digit?
         valid_old_digital_check or valid_new_digital_check
       end
 

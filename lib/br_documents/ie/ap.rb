@@ -17,7 +17,7 @@ module BrDocuments
         regex.match(@number).present?
       end
 
-      def valid_digital_check?
+      def valid_check_digit?
         weight = [9, 8, 7, 6, 5, 4, 3, 2]
         detect_range_digits
         @number[-1].eql? generate_check_digit(@number, weight).to_s

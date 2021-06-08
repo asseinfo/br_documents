@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe BrDocuments::Suframa do
   subject { described_class.new }
@@ -46,23 +46,23 @@ describe BrDocuments::Suframa do
       end
     end
 
-    it "is invalid with a sequence of the same number" do
-      ["11.1111.111", "111111111"].each do |number|
+    it 'is invalid with a sequence of the same number' do
+      ['11.1111.111', '111111111'].each do |number|
         suframa = BrDocuments::Suframa.new(number)
 
         expect(suframa).to_not be_valid
       end
     end
 
-    it "is invalid with invalid verifying digit" do
-      ["55.0309.010", "550309010"].each do |number|
+    it 'is invalid with invalid verifying digit' do
+      ['55.0309.010', '550309010'].each do |number|
         suframa = BrDocuments::Suframa.new(number)
 
         expect(suframa).to_not be_valid
       end
     end
 
-    it "is valid with correct number" do
+    it 'is valid with correct number' do
       ['11.1279.100', '10.1040.105', '100628109', '100698107'].each do |number|
         suframa = BrDocuments::Suframa.new(number)
 
@@ -70,8 +70,8 @@ describe BrDocuments::Suframa do
       end
     end
 
-    context "activity sector" do
-      it "is valid when activity_sector is in 01, 02, 10, 11, 20, 60" do
+    context 'activity sector' do
+      it 'is valid when activity_sector is in 01, 02, 10, 11, 20, 60' do
         ['11.1279.100', '10.1040.105'].each do |number|
           suframa = BrDocuments::Suframa.new(number)
 
@@ -79,7 +79,7 @@ describe BrDocuments::Suframa do
         end
       end
 
-      it "is invalid when activity_sector is not in 01, 02, 10, 11, 20, 60" do
+      it 'is invalid when activity_sector is not in 01, 02, 10, 11, 20, 60' do
         ['17.1279.107', '141161108'].each do |number|
           suframa = BrDocuments::Suframa.new(number)
 
@@ -88,8 +88,8 @@ describe BrDocuments::Suframa do
       end
     end
 
-    context "administration unit" do
-      it "is valid when adm_unit is in 01, 10, 30" do
+    context 'administration unit' do
+      it 'is valid when adm_unit is in 01, 10, 30' do
         ['11.1279.100', '101160100'].each do |number|
           suframa = BrDocuments::Suframa.new(number)
 
@@ -97,7 +97,7 @@ describe BrDocuments::Suframa do
         end
       end
 
-      it "is invalid when adm_unit is not in 01, 10, 30" do
+      it 'is invalid when adm_unit is not in 01, 10, 30' do
         ['11.1279.124', '101160160'].each do |number|
           suframa = BrDocuments::Suframa.new(number)
 

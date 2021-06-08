@@ -20,7 +20,7 @@ module BrDocuments
         valid_8_digits_format || valid_9_digits_format
       end
 
-      def valid_digital_check?
+      def valid_check_digit?
         @number.gsub!(/[\.\/-]/, '')
 
         weight1 = make_weight(total_size)
