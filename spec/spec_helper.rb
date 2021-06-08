@@ -1,14 +1,14 @@
-require "simplecov"
+require 'simplecov'
 SimpleCov.start
 
-require "bundler/setup"
+require 'bundler/setup'
 Bundler.require(:default, :development)
 
-require "br_documents"
+require 'br_documents'
 
-Dir[File.dirname(__FILE__) + "/support/*.rb"].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/support/*.rb"].sort.each { |f| require f }
 
-I18n.default_locale = "pt-BR"
+I18n.default_locale = 'pt-BR'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
@@ -18,5 +18,5 @@ RSpec.configure do |config|
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
 
-  config.order = "random"
+  config.order = 'random'
 end

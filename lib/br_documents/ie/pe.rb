@@ -1,15 +1,11 @@
-require_relative "pattern1"
-require_relative "pattern2"
+require_relative 'pattern1'
+require_relative 'pattern2'
 
 module BrDocuments
   module IE
     class PE
       def initialize(number)
-        if number.gsub(/[\.\/-]/, "").length <= 9
-          @validator = PE9.new(number)
-        else
-          @validator = PE14.new(number)
-        end
+        @validator = number.gsub(/[\.\/-]/, '').length <= 9 ? PE9.new(number) : PE14.new(number)
       end
 
       def valid?
@@ -20,7 +16,6 @@ module BrDocuments
         @validator.formatted
       end
 
-      private
       class PE14 < Pattern1
         def initialize(number)
           super
@@ -29,10 +24,12 @@ module BrDocuments
         end
 
         private
+
         def format_ie(number)
-          number.sub(/(\d{2})(\d{1})(\d{3})(\d{7})(\d{1})/, "\\1.\\2.\\3.\\4-\\5")
+          number.sub(/(\d{2})(\d{1})(\d{3})(\d{7})(\d{1})/, '\\1.\\2.\\3.\\4-\\5')
         end
       end
+      private_constant :PE14
 
       class PE9 < Pattern2
         def initialize(number)
@@ -43,10 +40,13 @@ module BrDocuments
         end
 
         private
+
         def format_ie(number)
-          number.sub(/(\d{7})(\d{2})/, "\\1-\\2")
+          number.sub(/(\d{7})(\d{2})/, '\\1-\\2')
         end
       end
+
+      private_constant :PE9
     end
   end
 end

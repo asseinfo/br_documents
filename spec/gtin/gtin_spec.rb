@@ -1,7 +1,7 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe BrDocuments::Gtin do
-  describe "#valid?" do
+  describe '#valid?' do
     context 'when the checksum is valid' do
       context 'when the GTIN has 8 digits' do
         subject { described_class.new('12345618') }

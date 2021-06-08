@@ -1,4 +1,4 @@
-require_relative "document"
+require_relative 'document'
 
 module BrDocuments
   module CnpjCpf
@@ -16,7 +16,7 @@ module BrDocuments
       end
 
       def format_number
-        @number.sub(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "\\1.\\2.\\3/\\4-\\5")
+        @number.sub(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '\\1.\\2.\\3/\\4-\\5')
       end
     end
   end
