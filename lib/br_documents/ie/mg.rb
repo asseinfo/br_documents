@@ -1,14 +1,15 @@
-require_relative "base"
-require_relative "../commons/mod11"
+require_relative 'base'
+require_relative '../commons/mod11'
 
 module BrDocuments
   module IE
     class MG < Base
       include Commons::Mod11
 
-      private
+      protected
+
       def format_ie(number)
-        number.sub(/(\d{3})(\d{3})(\d{3})(\d{4})/, "\\1.\\2.\\3/\\4")
+        number.sub(/(\d{3})(\d{3})(\d{3})(\d{4})/, '\\1.\\2.\\3/\\4')
       end
 
       def valid_format?
@@ -17,9 +18,9 @@ module BrDocuments
       end
 
       def valid_digital_check?
-        @number.gsub!(/[\.\/-]/, "")
+        @number.gsub!(/[\.\/-]/, '')
 
-        number1 = @number[0, 3] + "0" + @number[3..10]
+        number1 = "#{@number[0, 3]}0#{@number[3..10]}"
         weight1 = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
         digital_check1 = generate_first_digital_check(number1, weight1)
 
@@ -30,23 +31,19 @@ module BrDocuments
         @number[-2, 2].eql? "#{digital_check1}#{digital_check2}"
       end
 
+      private
+
       def generate_first_digital_check(values, weights)
         sum = 0
         weights.each_index do |i|
           number = weights[i] * values[i].to_i
-          if number < 10
-            sum += number
-          else
-            sum += number.to_s[0].to_i + number.to_s[1].to_i
-          end
+          sum += number < 10 ? number : number.to_s[0].to_i + number.to_s[1].to_i
         end
         next_dozen(sum) - sum
       end
 
       def next_dozen(number)
-        while number % 10 != 0
-          number = number + 1
-        end
+        number += 1 while number % 10 != 0
         number
       end
     end

@@ -1,7 +1,6 @@
 module BrDocuments
   module Commons
     module Mod14
-
       def generate_check_digit(values, weights)
         sum = reduce_weights(values, weights)
         mod = sum % 11

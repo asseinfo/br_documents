@@ -4,10 +4,10 @@ RSpec.describe IeValidator do
   let(:record) { double('model') }
 
   before do
-    allow(record).to receive(:uf) {'SC'}
+    allow(record).to receive(:uf) { 'SC' }
     allow(record).to receive(:errors).and_return({})
     allow(record.errors).to receive(:messages).and_return({})
-    allow(record.errors).to receive(:add) do | attribute, error |
+    allow(record.errors).to receive(:add) do |attribute, error|
       record.errors[attribute] ||= []
       record.errors[attribute] << error
       record.errors.messages[attribute] = record.errors[attribute]
@@ -50,7 +50,7 @@ RSpec.describe IeValidator do
 
   context 'when UF is invalid' do
     before do
-      allow(record).to receive(:uf) {'XX'}
+      allow(record).to receive(:uf) { 'XX' }
       subject.validate_each(record, 'ie', '253667852')
     end
 
@@ -67,7 +67,8 @@ RSpec.describe IeValidator do
 
     it 'adds error in model' do
       expect(record.errors.messages[:base]).to eql [
-        t('validator.ie.uf.no_present', uf: 'uf')]
+        t('validator.ie.uf.no_present', uf: 'uf')
+      ]
     end
   end
 
@@ -77,7 +78,8 @@ RSpec.describe IeValidator do
 
     it 'adds error in model' do
       expect(record.errors.messages[:base]).to eql [
-        t('validator.ie.uf.no_configured')]
+        t('validator.ie.uf.no_configured')
+      ]
     end
   end
 end

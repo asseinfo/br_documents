@@ -1,4 +1,4 @@
-require_relative "pattern1"
+require_relative 'pattern1'
 
 module BrDocuments
   module IE
@@ -9,6 +9,7 @@ module BrDocuments
       end
 
       private
+
       def format_ie(number)
         number
       end
