@@ -1,13 +1,9 @@
 require_relative 'pattern1'
 
-module BrDocuments
-  module IE
-    class CE < Pattern1
-      private
+class BrDocuments::IE::CE < BrDocuments::IE::Pattern1
+  private
 
-      def format_ie(number)
-        number.sub(/(\d{8})(\d{1})/, '\\1-\\2')
-      end
-    end
+  def format_ie(number)
+    number.sub(/(\d{8})(\d{1})/, '\\1-\\2')
   end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require_relative 'shared_examples_for_to_remove_all_masks'
 
-describe BrDocuments::IE::PA do
+fdescribe BrDocuments::IE::PA do
   describe '#formatted' do
     it 'returns a formatted ie' do
       ie = described_class.new('123456789')

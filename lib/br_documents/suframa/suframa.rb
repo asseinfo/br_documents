@@ -1,8 +1,7 @@
 require_relative '../commons/mod11'
 
-# rubocop:disable Style/ClassAndModuleChildren
 class BrDocuments::Suframa
-  include BrDocuments::Commons::Mod11
+  include BrDocuments::BrDocuments::Commons::Mod11
 
   def initialize(number)
     @number = number
@@ -57,4 +56,3 @@ class BrDocuments::Suframa
     @number.sub(/(\d{2})(\d{4})(\d{3})/, '\\1.\\2.\\3')
   end
 end
-# rubocop:enable Style/ClassAndModuleChildren

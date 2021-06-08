@@ -1,13 +1,9 @@
 require_relative 'pattern1'
 
-module BrDocuments
-  module IE
-    class MA < Pattern1
-      private
+class BrDocuments::IE::MA < BrDocuments::IE::Pattern1
+  private
 
-      def format_ie(number)
-        number
-      end
-    end
+  def format_ie(number)
+    number
   end
 end
