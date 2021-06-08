@@ -22,7 +22,7 @@ module BrDocuments
       end
 
       def valid_check_digit?
-        if @number[0].eql? 'P'
+        if @number[0] == 'P'
           valid_rural_producer_digital_check?
         else
           valid_standard_digital_check?

@@ -39,13 +39,13 @@ module BrDocuments
       def valid_old_digital_check
         weight = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
         remove_mask!
-        @number[-1].eql? generate_check_digit(@number[-6, 6], weight).to_s
+        @number[-1] == generate_check_digit(@number[-6, 6], weight).to_s
       end
 
       def valid_new_digital_check
         weight = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
         remove_mask!
-        @number[-1].eql? generate_check_digit(@number, weight).to_s
+        @number[-1] == generate_check_digit(@number, weight).to_s
       end
 
       def remove_mask!

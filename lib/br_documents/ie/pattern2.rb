@@ -25,7 +25,7 @@ module BrDocuments
         digital_check1 = generate_check_digit(@number, @weight1)
         digital_check2 = generate_check_digit(@number, @weight2)
 
-        @number[-2, 2].eql? "#{digital_check1}#{digital_check2}"
+        @number[-2, 2] == "#{digital_check1}#{digital_check2}"
       end
     end
   end

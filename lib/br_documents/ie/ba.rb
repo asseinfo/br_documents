@@ -30,7 +30,7 @@ module BrDocuments
         number = "#{@number[0, body_size]}#{digital_check2}"
         digital_check1 = digital_check_generator(number, weight1)
 
-        @number[-2, 2].eql? "#{digital_check1}#{digital_check2}"
+        @number[-2, 2] == "#{digital_check1}#{digital_check2}"
       end
 
       private
