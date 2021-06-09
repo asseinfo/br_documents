@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'codeclimate-test-reporter', '>= 1.0.7'
   spec.add_development_dependency 'rake', '>= 13.0.3'
   spec.add_development_dependency 'rspec', '>= 3.10.0'
-  spec.add_development_dependency 'rubocop', '~> 1.15.0'
+  spec.add_development_dependency 'rubocop', '~> 1.16.0'
   spec.add_development_dependency 'rubocop-performance', '~> 1.11.3'
   spec.add_development_dependency 'rubocop-rails', '~> 2.10.1'
   spec.add_development_dependency 'rubocop-rspec', '~> 2.3.0'
