@@ -13,7 +13,7 @@ class IeValidator < ActiveModel::EachValidator
   end
 
   def attribute_uf_was_configured_at_validator?(record)
-    record.errors.add(:base, I18n.t('validator.ie.uf.no_configured')) unless options[:uf].present?
+    record.errors.add(:base, I18n.t('validator.ie.uf.no_configured')) if options[:uf].blank?
 
     options[:uf].present?
   end

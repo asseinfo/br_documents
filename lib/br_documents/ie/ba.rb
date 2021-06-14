@@ -9,7 +9,7 @@ module BrDocuments
       protected
 
       def format_ie(number)
-        if number.gsub(/-/, '').length == 8
+        if number.delete('-').length == 8
           number.sub(/(\d{6})(\d{2})/, '\\1-\\2')
         else
           number.sub(/(\d{7})(\d{2})/, '\\1-\\2')
