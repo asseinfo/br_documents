@@ -24,7 +24,7 @@ module BrDocuments
       end
 
       def sequence_of_equal_numbers?
-        number_without_mask.split('').uniq.length == 1
+        number_without_mask.chars.uniq.length == 1
       end
 
       def valid_check_digit?

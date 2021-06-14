@@ -1,3 +1,20 @@
+# You can find more information about RuboCop pending cops policy
+# https://docs.rubocop.org/rubocop/versioning.html#pending-cops
+#
+# These are the default options. The .rubocop.yml inherit and
+# override all the default options.
+# https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rake
+AllCops:
+  TargetRubyVersion: 2.7.3
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  NewCops: enable
+
 # Offense count: 1
 # Configuration parameters: Include.
 # Include: **/*.gemspec
@@ -24,6 +41,18 @@ Metrics/BlockLength:
 Style/Documentation:
   Enabled: false
 
+RSpec/NamedSubject:
+  Enabled: false # default: true
+
+RSpec/MultipleExpectations:
+  Enabled: false # default: true
+
+RSpec/NestedGroups:
+  Enabled: false # default: true
+
+Style/RegexpLiteral:
+  Enabled: false # default: true
+
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never # default: always
 
@@ -31,27 +60,6 @@ Style/FrozenStringLiteralComment:
 # Cop supports --auto-correct.
 Style/RedundantRegexpEscape:
   Enabled: false
-
-# Offense count: 18
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, AllowInnerSlashes.
-# SupportedStyles: slashes, percent_r, mixed
-Style/RegexpLiteral:
-  Exclude:
-    - 'lib/br_documents/cnpj_cpf/cnpj.rb'
-    - 'lib/br_documents/cnpj_cpf/document.rb'
-    - 'lib/br_documents/ie/ac.rb'
-    - 'lib/br_documents/ie/ba.rb'
-    - 'lib/br_documents/ie/mg.rb'
-    - 'lib/br_documents/ie/mt.rb'
-    - 'lib/br_documents/ie/pattern1.rb'
-    - 'lib/br_documents/ie/pattern2.rb'
-    - 'lib/br_documents/ie/pe.rb'
-    - 'lib/br_documents/ie/rn.rb'
-    - 'lib/br_documents/ie/ro.rb'
-    - 'lib/br_documents/ie/rs.rb'
-    - 'lib/br_documents/ie/sp.rb'
-    - 'spec/ie/shared_examples_for_to_remove_all_masks.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
