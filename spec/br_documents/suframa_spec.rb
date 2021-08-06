@@ -69,41 +69,5 @@ describe BrDocuments::Suframa do
         expect(suframa).to be_valid
       end
     end
-
-    describe 'activity sector' do
-      it 'is valid when activity_sector is in 01, 02, 10, 11, 20, 60' do
-        ['11.1279.100', '10.1040.105'].each do |number|
-          suframa = described_class.new(number)
-
-          expect(suframa).to be_valid
-        end
-      end
-
-      it 'is invalid when activity_sector is not in 01, 02, 10, 11, 20, 60' do
-        ['17.1279.107', '141161108'].each do |number|
-          suframa = described_class.new(number)
-
-          expect(suframa).not_to be_valid
-        end
-      end
-    end
-
-    describe 'administration unit' do
-      it 'is valid when adm_unit is in 01, 10, 30' do
-        ['11.1279.100', '101160100'].each do |number|
-          suframa = described_class.new(number)
-
-          expect(suframa).to be_valid
-        end
-      end
-
-      it 'is invalid when adm_unit is not in 01, 10, 30' do
-        ['11.1279.124', '101160160'].each do |number|
-          suframa = described_class.new(number)
-
-          expect(suframa).not_to be_valid
-        end
-      end
-    end
   end
 end
