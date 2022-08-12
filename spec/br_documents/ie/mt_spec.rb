@@ -7,6 +7,11 @@ RSpec.describe BrDocuments::IE::MT do
       ie = described_class.new('12345678901')
       expect(ie.formatted).to eq '1234567890-1'
     end
+
+    it 'returns empty when ie is empty' do
+      ie = described_class.new('')
+      expect(ie.formatted).to eql ''
+    end
   end
 
   describe '#valid?' do
