@@ -13,7 +13,7 @@ module BrDocuments
       end
 
       def valid_format?
-        regex = /^(\d{3}\.\d{3}\.\d{3}\.\d{2}\-\d{2})$|^(\d{13})$/
+        regex = /^(\d{3}\.\d{3}\.\d{3}\/\d{4})$|^(\d{13})$/
         regex.match(@number).present?
       end
 
