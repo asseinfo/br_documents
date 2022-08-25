@@ -11,7 +11,7 @@ RSpec.describe BrDocuments::IE::MG do
 
   describe '#valid?' do
     it 'is invalid with malformed number' do
-      ['36.311.266.571-75', '4.168.836.973-423', '560.139.778.87-BA'].each do |number|
+      ['363.112.657.12-75', '4.168.836.973-423', '560.139.778.87-12'].each do |number|
         ie = described_class.new(number)
         expect(ie).not_to be_valid
       end
@@ -32,12 +32,12 @@ RSpec.describe BrDocuments::IE::MG do
     end
 
     it 'is valid with valid number' do
-      ['4193434759899', '9427301981820'].each do |number|
+      ['4193434759899', '9427301981820', '0043982240026'].each do |number|
         ie = described_class.new(number)
         expect(ie).to be_valid
       end
     end
 
-    include_examples 'for to remove all masks', '942.730.198.18-20'
+    include_examples 'for to remove all masks', '942.730.198/1820'
   end
 end
