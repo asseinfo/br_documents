@@ -37,6 +37,7 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
    - 'spec/**/*.rb'
+   - 'br_documents.gemspec'
 
 Style/Documentation:
   Enabled: false

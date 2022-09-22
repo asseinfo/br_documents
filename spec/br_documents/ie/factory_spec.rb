@@ -195,7 +195,7 @@ describe BrDocuments::IE::Factory do
       it 'is returns an error' do
         expect do
           described_class.create('', '')
-        end.to raise_error(ArgumentError, t('validator.ie.uf.invalid'))
+        end.to raise_error(ArgumentError, I18n.t('validator.ie.uf.invalid'))
       end
     end
   end

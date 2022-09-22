@@ -55,7 +55,7 @@ RSpec.describe IeValidator do
     end
 
     it 'adds error in model' do
-      expect(record.errors.messages['ie']).to include t('validator.ie.uf.invalid')
+      expect(record.errors.messages['ie']).to include I18n.t('validator.ie.uf.invalid')
     end
   end
 
@@ -66,9 +66,7 @@ RSpec.describe IeValidator do
     end
 
     it 'adds error in model' do
-      expect(record.errors.messages[:base]).to eql [
-        t('validator.ie.uf.no_present', uf: 'uf')
-      ]
+      expect(record.errors.messages[:base]).to eql [I18n.t('validator.ie.uf.no_present', uf: 'uf')]
     end
   end
 
@@ -78,9 +76,7 @@ RSpec.describe IeValidator do
     before { subject.validate_each(record, 'ie', '253667852') }
 
     it 'adds error in model' do
-      expect(record.errors.messages[:base]).to eql [
-        t('validator.ie.uf.no_configured')
-      ]
+      expect(record.errors.messages[:base]).to eql [I18n.t('validator.ie.uf.no_configured')]
     end
   end
 end

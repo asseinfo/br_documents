@@ -2,7 +2,6 @@ lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'br_documents/version'
 
-# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
   spec.name          = 'br_documents'
   spec.version       = BrDocuments::VERSION
@@ -34,4 +33,3 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop-rspec', '~> 2.3.0'
   spec.add_development_dependency 'simplecov', '>= 0.21.2'
 end
-# rubocop:enable Metrics/BlockLength
