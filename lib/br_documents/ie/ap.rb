@@ -38,6 +38,8 @@ module BrDocuments
         elsif number >= 3_019_023
           @p = 0
           @d = 0
+        elsif number.zero?
+          @p = 0
         end
       end
       # rubocop:enable Metrics/MethodLength

@@ -18,7 +18,7 @@ RSpec.describe BrDocuments::IE::AP do
     end
 
     it 'is invalid with invalid check number' do
-      ['030123456', '030182454'].each do |number|
+      ['030123456', '030182454', '00000000000000'].each do |number|
         ie = described_class.new(number)
         expect(ie).not_to be_valid
       end
