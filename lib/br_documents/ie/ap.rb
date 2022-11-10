@@ -6,6 +6,11 @@ module BrDocuments
     class AP < Base
       include Commons::Mod11
 
+      def valid?
+        # @number.to_i.positive?
+        @number.to_s.size == 9
+      end
+
       protected
 
       def format_ie(number)
@@ -38,8 +43,6 @@ module BrDocuments
         elsif number >= 3_019_023
           @p = 0
           @d = 0
-        elsif number.zero?
-          @p = 0
         end
       end
       # rubocop:enable Metrics/MethodLength
