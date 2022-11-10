@@ -1,5 +1,5 @@
 require 'simplecov'
-SimpleCov.start unless ENV["NO_COVERAGE"]
+SimpleCov.start unless ENV['NO_COVERAGE']
 
 require 'bundler/setup'
 Bundler.require(:default, :development)
