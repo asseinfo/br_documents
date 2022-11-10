@@ -18,15 +18,24 @@ RSpec.describe BrDocuments::IE::AP do
     end
 
     it 'is invalid with invalid check number' do
-      ie = described_class.new('030123456')
-      expect(ie).not_to be_valid
+      ['030123456', '030182454', '00000000000000'].each do |number|
+        ie = described_class.new(number)
+        expect(ie).not_to be_valid
+      end
     end
 
     it 'is valid with valid number' do
-      ['030123459', '030183458', '030213452', '030213460'].each do |number|
-        ie = described_class.new(number)
-        expect(ie).to be_valid
-      end
+      first_range_number = '030123459'
+      ie = described_class.new(first_range_number)
+      expect(ie).to be_valid
+
+      second_range_number = '030183458'
+      ie = described_class.new(second_range_number)
+      expect(ie).to be_valid
+
+      third_range_number = '030192455'
+      ie = described_class.new(third_range_number)
+      expect(ie).to be_valid
     end
 
     include_examples 'for to remove all masks', '030213452'
