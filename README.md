@@ -193,6 +193,9 @@ RAILS_ENV                      | no           | no    | yes | no          | test
 
 ## Deploy to Rubygems
 
+1. Increment the version `lib/br_documents/version.rb` and commit
+2. Run
+
     $ bundle exec rake release  # Create tag vX.X.X, build and push br_documents-X.X.X.gem to Rubygems
 
 You can build or install using one of the above tasks
