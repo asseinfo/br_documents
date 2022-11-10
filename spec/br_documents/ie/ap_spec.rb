@@ -11,24 +11,31 @@ RSpec.describe BrDocuments::IE::AP do
 
   describe '#valid?' do
     it 'is invalid with length different to 9' do
-      ['1234567', '123456789012'].each do |number|
+      ['12345678', '1234567890'].each do |number|
         ie = described_class.new(number)
         expect(ie).not_to be_valid
       end
     end
 
     it 'is invalid with invalid check number' do
-      ['030123456', '030182454'].each do |number|
+      ['030123456', '030182454', '000000000'].each do |number|
         ie = described_class.new(number)
         expect(ie).not_to be_valid
       end
     end
 
     it 'is valid with valid number' do
-      ['030123459', '030183458', '030213452', '030213460'].each do |number|
-        ie = described_class.new(number)
-        expect(ie).to be_valid
-      end
+      first_range_number = '030123459'
+      ie = described_class.new(first_range_number)
+      expect(ie).to be_valid
+
+      second_range_number = '030183458'
+      ie = described_class.new(second_range_number)
+      expect(ie).to be_valid
+
+      third_range_number = '030192455'
+      ie = described_class.new(third_range_number)
+      expect(ie).to be_valid
     end
 
     include_examples 'for to remove all masks', '030213452'

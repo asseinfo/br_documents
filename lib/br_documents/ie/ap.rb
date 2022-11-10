@@ -6,6 +6,10 @@ module BrDocuments
     class AP < Base
       include Commons::Mod11
 
+      def valid?
+        @number.to_s.size == 9 && super
+      end
+
       protected
 
       def format_ie(number)
@@ -18,6 +22,8 @@ module BrDocuments
       end
 
       def valid_check_digit?
+        return false if @number.to_i.zero?
+
         weight = [9, 8, 7, 6, 5, 4, 3, 2]
         detect_range_digits
         @number[-1] == generate_check_digit(@number, weight).to_s
