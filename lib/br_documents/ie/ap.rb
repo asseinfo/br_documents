@@ -22,7 +22,7 @@ module BrDocuments
       end
 
       def valid_check_digit?
-        return false if @number.to_i.zero?
+        return false if number_to_calculate_digits < 3_000_001
 
         weight = [9, 8, 7, 6, 5, 4, 3, 2]
         detect_range_digits
@@ -33,7 +33,7 @@ module BrDocuments
 
       # rubocop:disable Metrics/MethodLength
       def detect_range_digits
-        number = @number[0, 8].to_i
+        number = number_to_calculate_digits
 
         if number >= 3_000_001 && number <= 3_017_000
           @p = 5
@@ -47,6 +47,10 @@ module BrDocuments
         end
       end
       # rubocop:enable Metrics/MethodLength
+
+      def number_to_calculate_digits
+        @number[0, 8].to_i
+      end
 
       def generate_check_digit(values, weights)
         sum = reduce_weights(values, weights)
