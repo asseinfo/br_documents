@@ -29,7 +29,7 @@ GEM
     parallel (1.20.1)
     parser (3.0.1.1)
       ast (~> 2.4.1)
-    rack (2.2.3)
+    rack (3.0.0)
     rainbow (3.0.0)
     rake (13.0.6)
     regexp_parser (2.1.1)
