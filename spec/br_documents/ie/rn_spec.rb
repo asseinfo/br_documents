@@ -57,6 +57,6 @@ describe BrDocuments::IE::RN do
       end
     end
 
-    include_examples 'for to remove all masks', '20.0.040.040-0'
+    it_behaves_like 'for to remove all masks', '20.0.040.040-0'
   end
 end

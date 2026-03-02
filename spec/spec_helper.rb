@@ -1,12 +1,19 @@
 require 'simplecov'
-SimpleCov.start unless ENV['NO_COVERAGE']
+require 'simplecov-json'
+
+unless ENV['NO_COVERAGE']
+  SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
+    [SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::JSONFormatter]
+  )
+  SimpleCov.start
+end
 
 require 'bundler/setup'
 Bundler.require(:default, :development)
 
 require 'br_documents'
 
-Dir["#{File.dirname(__FILE__)}/support/*.rb"].sort.each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/support/*.rb"].each { |f| require f }
 
 I18n.default_locale = 'pt-BR'
 

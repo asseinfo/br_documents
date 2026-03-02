@@ -6,8 +6,7 @@ RSpec.describe IeValidator do
   let(:record) { instance_double('model') }
 
   before do
-    allow(record).to receive(:uf).and_return('SC')
-    allow(record).to receive(:errors).and_return({})
+    allow(record).to receive_messages(uf: 'SC', errors: {})
     allow(record.errors).to receive(:messages).and_return({})
     allow(record.errors).to receive(:add) do |attribute, error|
       record.errors[attribute] ||= []

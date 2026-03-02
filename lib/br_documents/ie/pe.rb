@@ -8,13 +8,9 @@ module BrDocuments
         @validator = number.gsub(/[\.\/-]/, '').length <= 9 ? PE9.new(number) : PE14.new(number)
       end
 
-      def valid?
-        @validator.valid?
-      end
+      delegate :valid?, to: :@validator
 
-      def formatted
-        @validator.formatted
-      end
+      delegate :formatted, to: :@validator
 
       class PE14 < Pattern1
         def initialize(number)

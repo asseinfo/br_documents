@@ -40,6 +40,6 @@ describe BrDocuments::IE::SP do
       end
     end
 
-    include_examples 'for to remove all masks', 'P-01100424.3/002'
+    it_behaves_like 'for to remove all masks', 'P-01100424.3/002'
   end
 end

@@ -45,6 +45,6 @@ RSpec.describe BrDocuments::IE::AP do
       expect(ie).to be_valid
     end
 
-    include_examples 'for to remove all masks', '030213452'
+    it_behaves_like 'for to remove all masks', '030213452'
   end
 end

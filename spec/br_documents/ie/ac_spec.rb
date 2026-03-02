@@ -38,6 +38,6 @@ RSpec.describe BrDocuments::IE::AC do
       end
     end
 
-    include_examples 'for to remove all masks', '01.047.545/609-01'
+    it_behaves_like 'for to remove all masks', '01.047.545/609-01'
   end
 end

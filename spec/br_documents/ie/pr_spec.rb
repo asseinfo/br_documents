@@ -31,6 +31,6 @@ describe BrDocuments::IE::PR do
       end
     end
 
-    include_examples 'for to remove all masks', '10163238-50'
+    it_behaves_like 'for to remove all masks', '10163238-50'
   end
 end

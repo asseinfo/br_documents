@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SuframaValidator do
   subject { described_class.new(attributes: 'suframa') }
 
-  let(:mock) { instance_double('mode') }
+  let(:mock) { instance_double('model') }
 
   before do
     allow(mock).to receive(:errors).and_return([])

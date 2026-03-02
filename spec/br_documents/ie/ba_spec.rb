@@ -63,7 +63,7 @@ RSpec.describe BrDocuments::IE::BA do
       end
     end
 
-    include_examples 'for to remove all masks', '1000003-06'
-    include_examples 'for to remove all masks', '100.000.306'
+    it_behaves_like 'for to remove all masks', '1000003-06'
+    it_behaves_like 'for to remove all masks', '100.000.306'
   end
 end

@@ -35,10 +35,10 @@ module BrDocuments
       def detect_range_digits
         number = number_to_calculate_digits
 
-        if number >= 3_000_001 && number <= 3_017_000
+        if number.between?(3_000_001, 3_017_000)
           @p = 5
           @d = 0
-        elsif number >= 3_017_001 && number <= 3_019_022
+        elsif number.between?(3_017_001, 3_019_022)
           @p = 9
           @d = 1
         elsif number >= 3_019_023

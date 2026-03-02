@@ -17,26 +17,25 @@ module BrDocuments
       end
 
       def valid_format?
-        valid_old_format or valid_new_format
+        valid_old_format? or valid_new_format?
       end
 
       def valid_check_digit?
         @number.gsub!(/[\.\/-]/, '')
 
-        weight = []
-        @number.length.downto(2).each { |w| weight << w }
+        weight = @number.length.downto(2).map { it }
 
         @number[-1] == generate_check_digit(@number, weight).to_s
       end
 
       private
 
-      def valid_old_format
+      def valid_old_format?
         regex = /^(\d{2}\.\d{3}\.\d{3}\-\d{1})$|^(\d{9})$/
         regex.match(@number).present?
       end
 
-      def valid_new_format
+      def valid_new_format?
         regex = /^(\d{2}\.\d{1}\.\d{3}\.\d{3}\-\d{1})$|^(\d{10})$/
         regex.match(@number).present?
       end

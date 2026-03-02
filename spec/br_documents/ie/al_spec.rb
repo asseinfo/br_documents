@@ -31,6 +31,6 @@ describe BrDocuments::IE::AL do
       end
     end
 
-    include_examples 'for to remove all masks', '248466313'
+    it_behaves_like 'for to remove all masks', '248466313'
   end
 end

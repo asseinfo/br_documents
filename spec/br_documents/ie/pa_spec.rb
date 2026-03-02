@@ -38,6 +38,6 @@ describe BrDocuments::IE::PA do
       end
     end
 
-    include_examples 'for to remove all masks', '15-866779-4'
+    it_behaves_like 'for to remove all masks', '15-866779-4'
   end
 end

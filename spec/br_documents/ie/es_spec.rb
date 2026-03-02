@@ -12,5 +12,5 @@ describe BrDocuments::IE::ES do
 
   it_behaves_like 'a pattern1', 'ES'
 
-  include_examples 'for to remove all masks', '12345678-9'
+  it_behaves_like 'for to remove all masks', '12345678-9'
 end
