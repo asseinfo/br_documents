@@ -136,7 +136,7 @@ DEPENDENCIES
   rubocop-rake (>= 0.5.1)
   rubocop-rspec (>= 2.3.0)
   simplecov (>= 0.21.2)
-  simplecov-json (~> 0.2.3, >= 0.2.3)
+  simplecov-json (>= 0.2.3)
 
 BUNDLED WITH
   4.0.2
