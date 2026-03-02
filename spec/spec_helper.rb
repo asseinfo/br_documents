@@ -2,10 +2,9 @@ require 'simplecov'
 require 'simplecov-json'
 
 unless ENV['NO_COVERAGE']
-  SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::JSONFormatter
-  ])
+  SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
+    [SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::JSONFormatter]
+  )
   SimpleCov.start
 end
 

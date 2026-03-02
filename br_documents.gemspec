@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '>= 1.3'
   spec.add_development_dependency 'byebug', '11.1.3' if RUBY_VERSION >= '2.0'
-  spec.add_development_dependency 'simplecov-json', '>= 0.2.3'
   spec.add_development_dependency 'rake', '>= 13.0.3'
   spec.add_development_dependency 'rspec', '>= 3.10.0'
   spec.add_development_dependency 'rubocop', '>= 1.15.0'
@@ -31,5 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop-rake', '>= 0.5.1'
   spec.add_development_dependency 'rubocop-rspec', '>= 2.3.0'
   spec.add_development_dependency 'simplecov', '>= 0.21.2'
+  spec.add_development_dependency 'simplecov-json', '>= 0.2.3'
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
