@@ -4,13 +4,13 @@
 # These are the default options. The .rubocop.yml inherit and
 # override all the default options.
 # https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml
-require:
+plugins:
   - rubocop-rails
   - rubocop-performance
   - rubocop-rspec
   - rubocop-rake
 AllCops:
-  TargetRubyVersion: 2.7.3
+  TargetRubyVersion: 3.4
   DisplayCopNames: true
   DisplayStyleGuide: true
   NewCops: enable
@@ -75,3 +75,18 @@ Style/SpecialGlobalVars:
 
 Style/WordArray:
   EnforcedStyle: brackets
+
+Gemspec/DevelopmentDependencies:
+  Exclude:
+    - 'br_documents.gemspec'
+
+Rails/DeprecatedActiveModelErrorsMethods:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Naming/PredicateMethod:
+  AllowedMethods:
+    - validate_each
+
+RSpec/VerifiedDoubleReference:
+  Enabled: false

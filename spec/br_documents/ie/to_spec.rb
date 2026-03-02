@@ -95,6 +95,6 @@ describe BrDocuments::IE::TO do
       end
     end
 
-    include_examples 'for to remove all masks', '29.99.231741-7'
+    it_behaves_like 'for to remove all masks', '29.99.231741-7'
   end
 end

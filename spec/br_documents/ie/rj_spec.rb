@@ -38,6 +38,6 @@ describe BrDocuments::IE::RJ do
       end
     end
 
-    include_examples 'for to remove all masks', '31.864.95-0'
+    it_behaves_like 'for to remove all masks', '31.864.95-0'
   end
 end

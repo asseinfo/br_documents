@@ -17,7 +17,7 @@ module BrDocuments
       end
 
       def valid_format?
-        valid_8_digits_format || valid_9_digits_format
+        valid_8_digits_format? || valid_9_digits_format?
       end
 
       def valid_check_digit?
@@ -35,13 +35,13 @@ module BrDocuments
 
       private
 
-      def valid_9_digits_format
+      def valid_9_digits_format?
         regex_mask1 = /^(\d{7}\-\d{2})$|^(\d{9})$/
         regex_mask2 = /^(\d{3}\.\d{3}\.\d{3})$|^(\d{9})$/
         regex_mask1.match(@number).present? || regex_mask2.match(@number).present?
       end
 
-      def valid_8_digits_format
+      def valid_8_digits_format?
         regex = /^(\d{6}\-\d{2})$|^(\d{8})$/
         regex.match(@number).present?
       end
@@ -63,14 +63,14 @@ module BrDocuments
       end
 
       def digital_check_generator(number, weight)
-        if use_digital_check_mod10
+        if use_digital_check_mod10?
           generate_check_digit_mod10(number, weight)
         else
           generate_check_digit(number, weight)
         end
       end
 
-      def use_digital_check_mod10
+      def use_digital_check_mod10?
         position = position_of_the_element_to_define_module
         @number[position].to_i <= 5 || @number[position].to_i == 8
       end

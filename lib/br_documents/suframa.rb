@@ -1,4 +1,4 @@
-require_relative './commons/mod11'
+require_relative 'commons/mod11'
 
 module BrDocuments
   class Suframa
