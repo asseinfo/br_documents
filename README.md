@@ -200,6 +200,16 @@ RAILS_ENV                      | no           | no    | yes | no          | test
 $ bundle exec rake release  # Create tag vX.X.X, build and push br_documents-X.X.X.gem to Rubygems
 ```
 
+3. On Github generate `release` or `tag`
+
+  * Under your repository name, click [Releases](https://github.com/asseinfo/nf-e/releases);
+  * Click at `Draft a new release`;
+  * Type a version number for your release; example: v4.0.1
+  * Target `master`
+  * Type a title for your release; example: 4.0.1 (March 3, 2020)
+  * Click at `Generate release note` [optional]
+  * Click at `Publish release`
+
 You can build or install using one of the above tasks
 
     $ bundle exec rake build    # Build br_documents-X.X.X.gem into the pkg directory
