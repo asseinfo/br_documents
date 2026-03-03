@@ -9,26 +9,26 @@ module BrDocuments
       protected
 
       def format_ie(number)
-        number.sub(/(\d{3})(\d{3})(\d{3})(\d{4})/, '\\1.\\2.\\3/\\4')
+        number.sub(/(\d{3})(\d{3})(\d{3})(\d{1,4})/, '\\1.\\2.\\3/\\4')
       end
 
       def valid_format?
-        regex = /^(\d{3}\.\d{3}\.\d{3}\/\d{4})$|^(\d{13})$/
+        regex = /^(\d{3}\.\d{3}\.\d{3}\/\d{1,4})$|^(\d{3,13})$/
         regex.match(@number).present?
       end
 
       def valid_check_digit?
-        @number.gsub!(/[\.\/-]/, '')
+        number = @number.gsub(/[\.\/-]/, '').rjust(13, '0')
 
-        number1 = "#{@number[0, 3]}0#{@number[3..10]}"
+        number1 = "#{number[0, 3]}0#{number[3..10]}"
         weight1 = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
         digital_check1 = generate_first_digital_check(number1, weight1)
 
-        number2 = "#{@number[0, 11]}#{digital_check1}"
+        number2 = "#{number[0, 11]}#{digital_check1}"
         weight2 = [3, 2, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
         digital_check2 = generate_check_digit(number2, weight2)
 
-        @number[-2, 2] == "#{digital_check1}#{digital_check2}"
+        number[-2, 2] == "#{digital_check1}#{digital_check2}"
       end
 
       private
