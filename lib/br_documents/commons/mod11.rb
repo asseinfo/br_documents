@@ -10,7 +10,7 @@ module BrDocuments
       def reduce_weights(values, weights)
         sum = 0
         weights.each_index do |i|
-          sum += weights[i] * values[i].to_i
+          sum += weights[i] * (values[i].ord - 48)
         end
         sum
       end
