@@ -25,18 +25,18 @@ module BrDocuments
     end
 
     def sequence_of_equal_numbers?
-      number_without_mask.chars.uniq.length == 1
+      remove_mask.chars.uniq.length == 1
     end
 
-    def number_without_mask
-      @number_without_mask ||= @number.delete('.')
+    def remove_mask
+      @remove_mask ||= @number.delete('.')
     end
 
     def valid_check_digit?
       weights = [9, 8, 7, 6, 5, 4, 3, 2]
 
-      check_digit = generate_check_digit(number_without_mask, weights)
-      number_without_mask[8] == check_digit.to_s
+      check_digit = generate_check_digit(remove_mask, weights)
+      remove_mask[8] == check_digit.to_s
     end
 
     def format_number
