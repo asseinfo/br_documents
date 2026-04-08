@@ -16,7 +16,8 @@ module BrDocuments
       end
 
       def format_number
-        number_without_mask.sub(/\A([A-Z0-9]{2})([A-Z0-9]{3})([A-Z0-9]{3})([A-Z0-9]{4})(\d{2})\z/, '\\1.\\2.\\3/\\4-\\5')
+        mask = /\A([A-Z0-9]{2})([A-Z0-9]{3})([A-Z0-9]{3})([A-Z0-9]{4})(\d{2})\z/
+        number_without_mask.sub(mask, '\\1.\\2.\\3/\\4-\\5')
       end
     end
   end
