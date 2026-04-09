@@ -24,18 +24,18 @@ module BrDocuments
       end
 
       def sequence_of_equal_numbers?
-        number_without_mask.chars.uniq.length == 1
+        remove_mask.chars.uniq.length == 1
       end
 
       def valid_check_digit?
         weight1, weight2 = weights_for_digital_check
 
-        digital_check1 = generate_check_digit(number_without_mask, weight1)
-        digital_check2 = generate_check_digit(number_without_mask, weight2)
+        digital_check1 = generate_check_digit(remove_mask, weight1)
+        digital_check2 = generate_check_digit(remove_mask, weight2)
         @number[-2, 2] == "#{digital_check1}#{digital_check2}"
       end
 
-      def number_without_mask
+      def remove_mask
         @number.gsub(/[\.\/-]/, '')
       end
     end

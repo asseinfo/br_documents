@@ -8,7 +8,7 @@ module BrDocuments
       private
 
       def format_regex
-        /^(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2})$|^(\d{14})$/
+        /^([A-Z0-9]{2}\.[A-Z0-9]{3}\.[A-Z0-9]{3}\/[A-Z0-9]{4}-\d{2})$|^([A-Z0-9]{12}\d{2})$/
       end
 
       def weights_for_digital_check
@@ -16,7 +16,8 @@ module BrDocuments
       end
 
       def format_number
-        @number.sub(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '\\1.\\2.\\3/\\4-\\5')
+        mask = /\A([A-Z0-9]{2})([A-Z0-9]{3})([A-Z0-9]{3})([A-Z0-9]{4})(\d{2})\z/
+        remove_mask.sub(mask, '\\1.\\2.\\3/\\4-\\5')
       end
     end
   end

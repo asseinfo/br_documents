@@ -7,6 +7,11 @@ describe BrDocuments::CnpjCpf::Cnpj do
       expect(cnpj.formatted).to eq '04.001.155/0001-01'
     end
 
+    it 'returns a formatted alphanumeric number' do
+      cnpj = described_class.new('12ABC34501DE35')
+      expect(cnpj.formatted).to eq '12.ABC.345/01DE-35'
+    end
+
     context 'when is invalid' do
       it 'returns an empty string' do
         cnpj = described_class.new('123')
@@ -54,6 +59,46 @@ describe BrDocuments::CnpjCpf::Cnpj do
     ['04.001.155/0001-01', '85961757000102'].each do |number|
       cnpj = described_class.new(number)
       expect(cnpj).to be_valid
+    end
+  end
+
+  context 'when is alphanumeric CNPJ' do
+    it 'is valid with correct alphanumeric number' do
+      ['12ABC34501DE35', '12.ABC.345/01DE-35'].each do |number|
+        cnpj = described_class.new(number)
+        expect(cnpj).to be_valid
+      end
+    end
+
+    it 'is valid when root is alphanumeric' do
+      ['ABCDEFGH000195', 'AB.CDE.FGH/0001-95'].each do |number|
+        cnpj = described_class.new(number)
+        expect(cnpj).to be_valid
+      end
+    end
+
+    it 'is valid when filial is alphanumeric' do
+      ['12345678ABCD06', '12.345.678/ABCD-06'].each do |number|
+        cnpj = described_class.new(number)
+        expect(cnpj).to be_valid
+      end
+    end
+
+    it 'is invalid with wrong check digit' do
+      cnpj = described_class.new('12ABC34501DE99')
+      expect(cnpj).not_to be_valid
+    end
+
+    it 'is invalid with lowercase input' do
+      cnpj = described_class.new('12abc34501de35')
+      expect(cnpj).not_to be_valid
+    end
+
+    it 'is invalid with special characters' do
+      ['12AB!34501DE35', '12ABC345@1DE35'].each do |number|
+        cnpj = described_class.new(number)
+        expect(cnpj).not_to be_valid
+      end
     end
   end
 end
